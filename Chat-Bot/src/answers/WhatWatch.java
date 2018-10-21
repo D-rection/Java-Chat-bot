@@ -6,9 +6,9 @@ import bot.InputData;
 import bot.Mood;
 
 public class WhatWatch implements TopicConversation{ 
-	public static String[] angryAnswers = { "Сам ищи", "Я не хочу тебе помогать", "Смотри, что хочешь", "Лень искать",
-	"Давай как-нибудь сам" };
-	public static String[] neutralAnswers = { "Что ты хочешь посмотреть: фильм, мультфильм или сериал?" };
+	public static String[] angryAnswers = { "РЎР°Рј РёС‰Рё", "РЇ РЅРµ С…РѕС‡Сѓ С‚РµР±Рµ РїРѕРјРѕРіР°С‚СЊ", "РЎРјРѕС‚СЂРё, С‡С‚Рѕ С…РѕС‡РµС€СЊ", "Р›РµРЅСЊ РёСЃРєР°С‚СЊ",
+	"Р”Р°РІР°Р№ РєР°Рє-РЅРёР±СѓРґСЊ СЃР°Рј" };
+	public static String[] neutralAnswers = { "Р§С‚Рѕ С‚С‹ С…РѕС‡РµС€СЊ РїРѕСЃРјРѕС‚СЂРµС‚СЊ: С„РёР»СЊРј, РјСѓР»СЊС‚С„РёР»СЊРј РёР»Рё СЃРµСЂРёР°Р»?" };
 	
 	public AnswerData getAnswerData(InputData input) {
 		if (input.currentAttitude.getFriendliness() == Mood.Angry) {

@@ -8,7 +8,7 @@ import bot.InputData;
 import bot.Mood;
 
 public class WhatTime implements TopicConversation {
-	public static String[] angryAnswers = { "У тебя что телефона нет?", "В углу экрана посмотри" };
+	public static String[] angryAnswers = { "РЈ С‚РµР±СЏ С‡С‚Рѕ С‚РµР»РµС„РѕРЅР° РЅРµС‚?", "Р’ СѓРіР»Сѓ СЌРєСЂР°РЅР° РїРѕСЃРјРѕС‚СЂРё" };
 
 	public AnswerData getAnswerData(InputData input) {
 		Date date = new Date();
@@ -16,7 +16,7 @@ public class WhatTime implements TopicConversation {
 			int random = 0 + (int) (Math.random() * angryAnswers.length);
 			return new AnswerData(angryAnswers[random], false);
 		} else {
-			return new AnswerData(new SimpleDateFormat("'Сейчас' kk:mm").format(date), false);
+			return new AnswerData(new SimpleDateFormat("'РЎРµР№С‡Р°СЃ' kk:mm").format(date), false);
 		}
 	}
 }

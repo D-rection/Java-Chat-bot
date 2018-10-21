@@ -6,19 +6,19 @@ public class GuessNumber {
 
 	public String getAnswer(String mess) {
 
-		Pattern pattern1 = Pattern.compile("отгадывать");
+		Pattern pattern1 = Pattern.compile("РѕС‚РіР°РґС‹РІР°С‚СЊ");
 
 		if (pattern1.matcher(mess).find()) {
-			return "Окей.Я загадал число от 0 до 100:) Твоя задача его отгадать))) Не бойся я буду давать подсказки:D Вот первая: Введи число:)";
+			return "РћРєРµР№.РЇ Р·Р°РіР°РґР°Р» С‡РёСЃР»Рѕ РѕС‚ 0 РґРѕ 100:) РўРІРѕСЏ Р·Р°РґР°С‡Р° РµРіРѕ РѕС‚РіР°РґР°С‚СЊ))) РќРµ Р±РѕР№СЃСЏ СЏ Р±СѓРґСѓ РґР°РІР°С‚СЊ РїРѕРґСЃРєР°Р·РєРё:D Р’РѕС‚ РїРµСЂРІР°СЏ: Р’РІРµРґРё С‡РёСЃР»Рѕ:)";
 		} else {
 			String number = mess.replaceAll("[^0-9]", "");
 			int UserNumber = Integer.parseInt(number);
 			if (UserNumber > UnknowNumber.getBotNumber()) {
-				return "Моё число меньше.";
+				return "РњРѕС‘ С‡РёСЃР»Рѕ РјРµРЅСЊС€Рµ.";
 			} else if (UserNumber < UnknowNumber.getBotNumber()) {
-				return "Моё число больше.";
+				return "РњРѕС‘ С‡РёСЃР»Рѕ Р±РѕР»СЊС€Рµ.";
 			} else {
-				return "Ты угадал!";
+				return "РўС‹ СѓРіР°РґР°Р»!";
 			}
 		}
 	}

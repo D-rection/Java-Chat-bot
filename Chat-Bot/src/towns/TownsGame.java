@@ -10,9 +10,9 @@ import bot.InputData;
 public class TownsGame implements TopicConversation {
 	private Map<String, String> patternToAnalysis = new HashMap<String, String>() {
 		{
-			put("наигрался", "endOfGame");
-			put("давай закончим", "endOfGame");
-			put("хватит\\.*", "endOfGame");
+			put("РЅР°РёРіСЂР°Р»СЃСЏ", "endOfGame");
+			put("РґР°РІР°Р№ Р·Р°РєРѕРЅС‡РёРј", "endOfGame");
+			put("С…РІР°С‚РёС‚\\.*", "endOfGame");
 		}
 	};
 
@@ -24,7 +24,7 @@ public class TownsGame implements TopicConversation {
 			TownsData.firstCityWas();
 			return start(input);
 		}
-		String currentMove = "какая-то строка";
+		String currentMove = "РєР°РєР°СЏ-С‚Рѕ СЃС‚СЂРѕРєР°";
 		String message = String.join(" ", input.textMessage.toLowerCase().split("[ {,|.}?]+"));
 		for (String o : patternToAnalysis.keySet()) {
 			Pattern pattern = Pattern.compile(o);
@@ -36,7 +36,7 @@ public class TownsGame implements TopicConversation {
 		switch (currentMove) {
 		case "endOfGame": {
 			TownsData.endOfGame();
-			return new AnswerData("Вы точно хотите завершить игру?", true);
+			return new AnswerData("Р’С‹ С‚РѕС‡РЅРѕ С…РѕС‚РёС‚Рµ Р·Р°РІРµСЂС€РёС‚СЊ РёРіСЂСѓ?", true);
 		}
 		default:
 			return nextCity(input);
@@ -45,26 +45,26 @@ public class TownsGame implements TopicConversation {
 	}
 
 	private AnswerData start(InputData input) {
-		String answer = TownsMemory.getUnusedTown("Ыа");
+		String answer = TownsMemory.getUnusedTown("Р«Р°");
 		TownsData.setLastCity(answer);
 		return new AnswerData(answer, true);
 	}
 
 	private AnswerData nextCity(InputData input) {
 		if (!equalsFirstAndLastLetter(input.textMessage)) {
-			String answer = "Первая буква \"" + input.textMessage + "\" и последняя буква \"" + TownsData.getLastCity()
-					+ "\" не совпадают. Вы проиграли.";
+			String answer = "РџРµСЂРІР°СЏ Р±СѓРєРІР° \"" + input.textMessage + "\" Рё РїРѕСЃР»РµРґРЅСЏСЏ Р±СѓРєРІР° \"" + TownsData.getLastCity()
+					+ "\" РЅРµ СЃРѕРІРїР°РґР°СЋС‚. Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё.";
 			reboot();
 			return new AnswerData(answer, false);
 		}
 		if (checkInUsed(input.textMessage)) {
-			String answer = "Этот город уже называли ранее." + "Вы проиграли.";
+			String answer = "Р­С‚РѕС‚ РіРѕСЂРѕРґ СѓР¶Рµ РЅР°Р·С‹РІР°Р»Рё СЂР°РЅРµРµ." + "Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё.";
 			reboot();
 			return new AnswerData(answer, false);
 		}
 		if (!checkInUnused(input.textMessage)) {
-			String answer = "Этого города нет в моей базе данных. "
-					+ "Скорее всего это не город и Вы пытаетесь меня обмануть. " + "Вы проиграли.";
+			String answer = "Р­С‚РѕРіРѕ РіРѕСЂРѕРґР° РЅРµС‚ РІ РјРѕРµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С…. "
+					+ "РЎРєРѕСЂРµРµ РІСЃРµРіРѕ СЌС‚Рѕ РЅРµ РіРѕСЂРѕРґ Рё Р’С‹ РїС‹С‚Р°РµС‚РµСЃСЊ РјРµРЅСЏ РѕР±РјР°РЅСѓС‚СЊ. " + "Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё.";
 			reboot();
 			return new AnswerData(answer, false);
 		}
@@ -75,7 +75,7 @@ public class TownsGame implements TopicConversation {
 			return new AnswerData(answer, true);
 		}
 		reboot();
-		return new AnswerData("Я не смог подобрать нужного названия(" + "Вы выиграли", false);
+		return new AnswerData("РЇ РЅРµ СЃРјРѕРі РїРѕРґРѕР±СЂР°С‚СЊ РЅСѓР¶РЅРѕРіРѕ РЅР°Р·РІР°РЅРёСЏ(" + "Р’С‹ РІС‹РёРіСЂР°Р»Рё", false);
 	}
 
 	private String getTrueNameCity(String s) {
@@ -95,7 +95,7 @@ public class TownsGame implements TopicConversation {
 
 	private Character getLastLetter(String s) {
 		int i = 1;
-		while (s.charAt(s.length() - i) == 'ь' || s.charAt(s.length() - i) == 'ы') {
+		while (s.charAt(s.length() - i) == 'СЊ' || s.charAt(s.length() - i) == 'С‹') {
 			i++;
 		}
 		return s.charAt(s.length() - i);
@@ -115,17 +115,17 @@ public class TownsGame implements TopicConversation {
 
 	private AnswerData endOfGame(InputData input) {
 		String userAnswer = input.textMessage.toLowerCase().trim();
-		userAnswer = userAnswer.replaceAll("[^а-я]", "");
-		if (userAnswer.equals("да")) {
+		userAnswer = userAnswer.replaceAll("[^Р°-СЏ]", "");
+		if (userAnswer.equals("РґР°")) {
 			reboot();
-			return new AnswerData("Спасибо, было приятно поиграть. Приходи ещё!", false);
+			return new AnswerData("РЎРїР°СЃРёР±Рѕ, Р±С‹Р»Рѕ РїСЂРёСЏС‚РЅРѕ РїРѕРёРіСЂР°С‚СЊ. РџСЂРёС…РѕРґРё РµС‰С‘!", false);
 		}
-		if (userAnswer.equals("нет")) {
+		if (userAnswer.equals("РЅРµС‚")) {
 			TownsData.continueGame();
-			String answer = "Давай продолжим тогда. Последним был город: " + TownsData.getLastCity();
+			String answer = "Р”Р°РІР°Р№ РїСЂРѕРґРѕР»Р¶РёРј С‚РѕРіРґР°. РџРѕСЃР»РµРґРЅРёРј Р±С‹Р» РіРѕСЂРѕРґ: " + TownsData.getLastCity();
 			return new AnswerData(answer, true);
 		}
 		return new AnswerData(
-				"К сожалению, я пока ещё не очень умный бот и не понимаю тебя. " + "Ты будешь ещё играть?", true);
+				"Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, СЏ РїРѕРєР° РµС‰С‘ РЅРµ РѕС‡РµРЅСЊ СѓРјРЅС‹Р№ Р±РѕС‚ Рё РЅРµ РїРѕРЅРёРјР°СЋ С‚РµР±СЏ. " + "РўС‹ Р±СѓРґРµС€СЊ РµС‰С‘ РёРіСЂР°С‚СЊ?", true);
 	}
 }

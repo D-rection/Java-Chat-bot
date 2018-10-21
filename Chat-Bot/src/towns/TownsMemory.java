@@ -7,10 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
 
 public class TownsMemory {
 	static private HashSet<String> unusedTowns = new HashSet<String>();
@@ -46,7 +48,7 @@ public class TownsMemory {
 
 	static private String getLastLetter(String s) {
 		int i = 1;
-		while (s.charAt(s.length() - i) == 'ü' || s.charAt(s.length() - i) == 'û') {
+		while (s.charAt(s.length() - i) == 'ÑŒ' || s.charAt(s.length() - i) == 'Ñ‹') {
 			i++;
 		}
 		return s.substring(s.length() - i, s.length() - i + 1);
@@ -58,13 +60,12 @@ public class TownsMemory {
 
 	static public void reboot() {
 		unusedTowns.clear();
-		File file = new File(pathOriginalInfo);
 		String prevFirst = null;
-		try(InputStreamReader inputReader = new InputStreamReader(new FileInputStream(file),"UTF-8")) {			
-			FileReader fr = new FileReader(file);
-			BufferedReader reader = new BufferedReader(fr);
-			String line = reader.readLine();
-			while (line != null) {
+		try(BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(pathOriginalInfo), StandardCharsets.UTF_8))) {			
+			String line;
+			while ((line = reader.readLine()) != null) {
 				String firstLetter = getFirstLetter(line);
 				if (!firstLetter.equals(prevFirst)) {
 					firstLetterLists.put(firstLetter, new ArrayList<String>());
@@ -72,10 +73,7 @@ public class TownsMemory {
 				}
 				firstLetterLists.get(firstLetter).add(line);
 				unusedTowns.add(line);
-				line = reader.readLine();
 			}
-		} catch (FileNotFoundException e) {
-			System.err.println(e);
 		} catch (IOException e) {
 			System.err.println(e);
 		}

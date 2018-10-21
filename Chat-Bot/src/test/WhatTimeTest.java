@@ -30,7 +30,7 @@ class WhatTimeTest {
 		WhatTime whattime = new WhatTime();
 		String answer = whattime.getAnswerData(new InputData(a, null, null)).getAnswer();
 		Date date = new Date();
-		assertTrue(answer.equals(new SimpleDateFormat("'Сейчас' kk:mm").format(date)));
+		assertTrue(answer.equals(new SimpleDateFormat("'РЎРµР№С‡Р°СЃ' kk:mm").format(date)));
 	}
 
 	@Test
@@ -41,7 +41,7 @@ class WhatTimeTest {
 		WhatTime whattime = new WhatTime();
 		String answer = whattime.getAnswerData(new InputData(a, null, null)).getAnswer();
 		Date date = new Date();
-		assertTrue(answer.equals(new SimpleDateFormat("'Сейчас' kk:mm").format(date)));
+		assertTrue(answer.equals(new SimpleDateFormat("'РЎРµР№С‡Р°СЃ' kk:mm").format(date)));
 	}
 
 }

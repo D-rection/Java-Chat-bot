@@ -8,34 +8,34 @@ import bot.InputData;
 public class PlayNumbers implements TopicConversation {
 
 	public AnswerData getAnswerData(InputData input) {
-		Pattern pattern1 = Pattern.compile("сыграем|поиграем");
-		Pattern pattern2 = Pattern.compile("отгадывать");
+		Pattern pattern1 = Pattern.compile("СЃС‹РіСЂР°РµРј|РїРѕРёРіСЂР°РµРј");
+		Pattern pattern2 = Pattern.compile("РѕС‚РіР°РґС‹РІР°С‚СЊ");
 		Pattern pattern3 = Pattern.compile("\\d+");
-		Pattern pattern4 = Pattern.compile("загадывать");
-		Pattern pattern5 = Pattern.compile("готов|да");
-		Pattern pattern6 = Pattern.compile("меньше|больше");
+		Pattern pattern4 = Pattern.compile("Р·Р°РіР°РґС‹РІР°С‚СЊ");
+		Pattern pattern5 = Pattern.compile("РіРѕС‚РѕРІ|РґР°");
+		Pattern pattern6 = Pattern.compile("РјРµРЅСЊС€Рµ|Р±РѕР»СЊС€Рµ");
 		String mess = input.textMessage;
 		if (pattern1.matcher(mess).find()) {
-			return new AnswerData("Хорошо давай сыграем. Ты хочешь отгадывать или загадывать?", true);
+			return new AnswerData("РҐРѕСЂРѕС€Рѕ РґР°РІР°Р№ СЃС‹РіСЂР°РµРј. РўС‹ С…РѕС‡РµС€СЊ РѕС‚РіР°РґС‹РІР°С‚СЊ РёР»Рё Р·Р°РіР°РґС‹РІР°С‚СЊ?", true);
 		} else if (pattern2.matcher(mess).find() || pattern3.matcher(mess).find()) {
 			if (pattern2.matcher(mess).find()) {
 				UnknowNumber.setBotNumber((int) Math.floor(Math.random() * 100));
 			}
 			String answer = new GuessNumber().getAnswer(mess);
-			if (answer == "Ты угадал!") {
+			if (answer == "РўС‹ СѓРіР°РґР°Р»!") {
 				return new AnswerData(answer, false);
 			} else {
 				return new AnswerData(answer, true);
 			}
 		} else if (pattern4.matcher(mess).find() || pattern5.matcher(mess).find() || pattern6.matcher(mess).find()) {
 			String answer = new MakeNumber().getAnswer(mess);
-			if (mess == "угадал") {
+			if (mess == "СѓРіР°РґР°Р»") {
 				return new AnswerData(answer, false);
 			} else {
 				return new AnswerData(answer, true);
 			}
 		} else {
-			return new AnswerData("Это не верный ответ!!!Ты проиграл(", false);
+			return new AnswerData("Р­С‚Рѕ РЅРµ РІРµСЂРЅС‹Р№ РѕС‚РІРµС‚!!!РўС‹ РїСЂРѕРёРіСЂР°Р»(", false);
 		}
 	}
 }

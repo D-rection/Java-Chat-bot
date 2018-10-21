@@ -7,7 +7,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.*; // Для стиля документа
+import javax.swing.text.*; // Р”Р»СЏ СЃС‚РёР»СЏ РґРѕРєСѓРјРµРЅС‚Р°
 import bot.*;
 
 class ChatBotMax extends JFrame implements ActionListener {
@@ -16,13 +16,13 @@ class ChatBotMax extends JFrame implements ActionListener {
 	final int START_LOCATION = 200;
 	final int WINDOW_WIDTH = 350;
 	final int WINDOW_HEIGHT = 450;
-	final String BTN_ENTER = "Отправить";
+	final String BTN_ENTER = "РћС‚РїСЂР°РІРёС‚СЊ";
 
-	JTextPane dialogue; // Поле диалога
-	JTextField message; // Поле для ввода сообщения
-	Bot sbot; // Класс бота
-	SimpleAttributeSet botStyle; // Стиль текста бота
-	SimpleAttributeSet userStyle; // Стиль текста пользователя
+	JTextPane dialogue; // РџРѕР»Рµ РґРёР°Р»РѕРіР°
+	JTextField message; // РџРѕР»Рµ РґР»СЏ РІРІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ
+	Bot sbot; // РљР»Р°СЃСЃ Р±РѕС‚Р°
+	SimpleAttributeSet botStyle; // РЎС‚РёР»СЊ С‚РµРєСЃС‚Р° Р±РѕС‚Р°
+	SimpleAttributeSet userStyle; // РЎС‚РёР»СЊ С‚РµРєСЃС‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
 	public static void main(String[] args) {
 		new ChatBotMax();
@@ -37,7 +37,7 @@ class ChatBotMax extends JFrame implements ActionListener {
 		setBounds(START_LOCATION, START_LOCATION, WINDOW_WIDTH, WINDOW_HEIGHT);
 		setIconImage(new ImageIcon("./src/1.png").getImage());
 
-		// Настройка диалогового поля
+		// РќР°СЃС‚СЂРѕР№РєР° РґРёР°Р»РѕРіРѕРІРѕРіРѕ РїРѕР»СЏ
 		dialogue = new JTextPane();
 		dialogue.setEditable(false);
 		dialogue.setContentType("text/html");
@@ -45,7 +45,7 @@ class ChatBotMax extends JFrame implements ActionListener {
 		dialogue.setBackground(new Color(255, 228, 181));
 		JScrollPane scrollBar = new JScrollPane(dialogue);
 
-		// Настройка сообщений бота и пользователя
+		// РќР°СЃС‚СЂРѕР№РєР° СЃРѕРѕР±С‰РµРЅРёР№ Р±РѕС‚Р° Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		botStyle = new SimpleAttributeSet();
 		StyleConstants.setItalic(botStyle, true);
 		StyleConstants.setFontSize(botStyle, 13);
@@ -56,7 +56,7 @@ class ChatBotMax extends JFrame implements ActionListener {
 		StyleConstants.setForeground(userStyle, new Color(199, 21, 133));
 		StyleConstants.setAlignment(userStyle, StyleConstants.ALIGN_RIGHT);
 
-		// Поле для сообщения и кнопка
+		// РџРѕР»Рµ РґР»СЏ СЃРѕРѕР±С‰РµРЅРёСЏ Рё РєРЅРѕРїРєР°
 		JPanel bp = new JPanel();
 		bp.setLayout(new BoxLayout(bp, BoxLayout.X_AXIS));
 		message = new JTextField();
@@ -65,13 +65,13 @@ class ChatBotMax extends JFrame implements ActionListener {
 		JButton enter = new JButton(BTN_ENTER);
 		enter.addActionListener(this);
 
-		// Добавление всех элементов окна
+		// Р”РѕР±Р°РІР»РµРЅРёРµ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РѕРєРЅР°
 		bp.add(message);
 		bp.add(enter);
 		add(BorderLayout.CENTER, scrollBar);
 		add(BorderLayout.SOUTH, bp);
 		setVisible(true);
-		sbot = new Bot(); // Создание объекта бота
+		sbot = new Bot(); // РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Р±РѕС‚Р°
 	}
 
 	/**

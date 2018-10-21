@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.regex.*;
 
 public class Bot {
-	private Random random = new Random(); // Для рандомных ответов
+	private Random random = new Random(); // Р”Р»СЏ СЂР°РЅРґРѕРјРЅС‹С… РѕС‚РІРµС‚РѕРІ
 	private Attitude attitude = new Attitude();
 	private Memory memory = new Memory();
 	private TopicConversation currentConversation = null;

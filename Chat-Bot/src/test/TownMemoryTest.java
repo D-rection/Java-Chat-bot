@@ -9,55 +9,55 @@ public class TownMemoryTest {
 	@Test
 	void testMemoryA1() {
 		TownsMemory.reboot();
-		TownsMemory.useTown("¿·‡Í‡Ì");
-		assertTrue(TownsMemory.containsUsedTowns("¿·‡Í‡Ì"));
+		TownsMemory.useTown("–ê–±–∞–∫–∞–Ω");
+		assertTrue(TownsMemory.containsUsedTowns("–ê–±–∞–∫–∞–Ω"));
 		TownsMemory.reboot();
 	}
 
 	@Test
 	void testMemoryA2() {
 		TownsMemory.reboot();
-		TownsMemory.useTown("¿·‡Í‡Ì");
-		assertTrue(!TownsMemory.containsUnusedTowns("¿·‡Í‡Ì"));
+		TownsMemory.useTown("–ê–±–∞–∫–∞–Ω");
+		assertTrue(!TownsMemory.containsUnusedTowns("–ê–±–∞–∫–∞–Ω"));
 		TownsMemory.reboot();
 	}
 
 	@Test
 	void testMemoryA3() {
 		TownsMemory.reboot();
-		assertTrue(TownsMemory.containsUnusedTowns("ŒÏÒÍ"));
+		assertTrue(TownsMemory.containsUnusedTowns("–û–º—Å–∫"));
 		TownsMemory.reboot();
 	}
 
 	@Test
 	void testMemoryUseTown1() {
 		TownsMemory.reboot();
-		TownsMemory.useTown("¿·‡Í‡Ì");
-		assertTrue(TownsMemory.containsUsedTowns("¿·‡Í‡Ì"));
-		TownsMemory.useTown(" ËÓ‚");
-		assertTrue(TownsMemory.containsUsedTowns("¿·‡Í‡Ì"));
-		assertTrue(TownsMemory.containsUsedTowns(" ËÓ‚"));
+		TownsMemory.useTown("–ê–±–∞–∫–∞–Ω");
+		assertTrue(TownsMemory.containsUsedTowns("–ê–±–∞–∫–∞–Ω"));
+		TownsMemory.useTown("–ö–∏—Ä–æ–≤");
+		assertTrue(TownsMemory.containsUsedTowns("–ê–±–∞–∫–∞–Ω"));
+		assertTrue(TownsMemory.containsUsedTowns("–ö–∏—Ä–æ–≤"));
 		TownsMemory.reboot();
 	}
 
 	@Test
 	void testMemoryUseTown3() {
 		TownsMemory.reboot();
-		TownsMemory.useTown("¿·‡Í‡Ì");
-		assertFalse(TownsMemory.containsUnusedTowns("¿·‡Í‡Ì"));
-		TownsMemory.useTown(" ËÓ‚");
-		assertFalse(TownsMemory.containsUnusedTowns("¿·‡Í‡Ì"));
-		assertFalse(TownsMemory.containsUnusedTowns(" ËÓ‚"));
+		TownsMemory.useTown("–ê–±–∞–∫–∞–Ω");
+		assertFalse(TownsMemory.containsUnusedTowns("–ê–±–∞–∫–∞–Ω"));
+		TownsMemory.useTown("–ö–∏—Ä–æ–≤");
+		assertFalse(TownsMemory.containsUnusedTowns("–ê–±–∞–∫–∞–Ω"));
+		assertFalse(TownsMemory.containsUnusedTowns("–ö–∏—Ä–æ–≤"));
 		TownsMemory.reboot();
 	}
 
 	@Test
 	void testMemoryReboot() {
 		TownsMemory.reboot();
-		assertFalse(TownsMemory.containsUsedTowns("¿·‡Í‡Ì"));
-		assertFalse(TownsMemory.containsUsedTowns(" ËÓ‚"));
-		assertTrue(TownsMemory.containsUnusedTowns("¿·‡Í‡Ì"));
-		assertTrue(TownsMemory.containsUnusedTowns(" ËÓ‚"));
+		assertFalse(TownsMemory.containsUsedTowns("–ê–±–∞–∫–∞–Ω"));
+		assertFalse(TownsMemory.containsUsedTowns("–ö–∏—Ä–æ–≤"));
+		assertTrue(TownsMemory.containsUnusedTowns("–ê–±–∞–∫–∞–Ω"));
+		assertTrue(TownsMemory.containsUnusedTowns("–ö–∏—Ä–æ–≤"));
 		TownsMemory.reboot();
 	}
 }

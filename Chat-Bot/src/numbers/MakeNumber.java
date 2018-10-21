@@ -4,17 +4,17 @@ import java.util.regex.Pattern;
 
 public class MakeNumber {
 	public String getAnswer(String mess) {
-		Pattern pattern1 = Pattern.compile("загадывать");
-		Pattern pattern2 = Pattern.compile("угадал");
-		Pattern pattern3 = Pattern.compile("меньше");
-		Pattern pattern4 = Pattern.compile("больше");
+		Pattern pattern1 = Pattern.compile("Р·Р°РіР°РґС‹РІР°С‚СЊ");
+		Pattern pattern2 = Pattern.compile("СѓРіР°РґР°Р»");
+		Pattern pattern3 = Pattern.compile("РјРµРЅСЊС€Рµ");
+		Pattern pattern4 = Pattern.compile("Р±РѕР»СЊС€Рµ");
 
 		if (pattern1.matcher(mess).find()) {
 			UnknowNumber.setMinNumber(0);
 			UnknowNumber.setMaxNumber(100);
-			return "Окей.Загадай число от 0 до 100:) Моя задача его отгадать))) Только давай мне подсказки(меньше/больше):D Когда угадаю напиши:'угадал'))) Ты готов?";
+			return "РћРєРµР№.Р—Р°РіР°РґР°Р№ С‡РёСЃР»Рѕ РѕС‚ 0 РґРѕ 100:) РњРѕСЏ Р·Р°РґР°С‡Р° РµРіРѕ РѕС‚РіР°РґР°С‚СЊ))) РўРѕР»СЊРєРѕ РґР°РІР°Р№ РјРЅРµ РїРѕРґСЃРєР°Р·РєРё(РјРµРЅСЊС€Рµ/Р±РѕР»СЊС€Рµ):D РљРѕРіРґР° СѓРіР°РґР°СЋ РЅР°РїРёС€Рё:'СѓРіР°РґР°Р»'))) РўС‹ РіРѕС‚РѕРІ?";
 		} else if (pattern2.matcher(mess).find()) {
-			return "Урааа!!!Было приятно с тобой поиграть)))";
+			return "РЈСЂР°Р°Р°!!!Р‘С‹Р»Рѕ РїСЂРёСЏС‚РЅРѕ СЃ С‚РѕР±РѕР№ РїРѕРёРіСЂР°С‚СЊ)))";
 		} else {
 			if (pattern3.matcher(mess).find()) {
 				UnknowNumber.setMaxNumber(UnknowNumber.getBotNumber());

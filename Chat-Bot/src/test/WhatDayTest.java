@@ -30,7 +30,7 @@ class WhatDayTest {
 		WhatDay whatday = new WhatDay();
 		String answer = whatday.getAnswerData(new InputData(a, null, null)).getAnswer();
 		Date date = new Date();
-		assertTrue(answer.equals(new SimpleDateFormat("'Сегодня' EE dd.MM.yyyy").format(date)));
+		assertTrue(answer.equals(new SimpleDateFormat("'РЎРµРіРѕРґРЅСЏ' EE dd.MM.yyyy").format(date)));
 	}
 
 	@Test
@@ -41,6 +41,6 @@ class WhatDayTest {
 		WhatDay whatday = new WhatDay();
 		String answer = whatday.getAnswerData(new InputData(a, null, null)).getAnswer();
 		Date date = new Date();
-		assertTrue(answer.equals(new SimpleDateFormat("'Сегодня' EE dd.MM.yyyy").format(date)));
+		assertTrue(answer.equals(new SimpleDateFormat("'РЎРµРіРѕРґРЅСЏ' EE dd.MM.yyyy").format(date)));
 	}
 }
