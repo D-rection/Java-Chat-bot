@@ -75,7 +75,7 @@ public class Memory {
 			put("подскажи\\s.*сериал", new Series());
 			put("посоветуй\\s.*сериал", new Series());
 			// towns
-			//put("города", new TownsGame());
+			put("города", new TownsGame());
 			// numbers
 			put("поиграем\\s.*числа", new PlayNumbers());
 			put("сыграем\\s.*числа", new PlayNumbers());
