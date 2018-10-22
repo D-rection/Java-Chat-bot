@@ -3,15 +3,15 @@ package towns;
 import answers.DifficultLevel;
 
 public class TownsData {
-	static private int spreadValues = 20;
-	static private boolean start = true;
-	static private boolean endOfGame = false;
-	static private boolean isSetMaxCountCities = false;
-	static private int maxCountCities;
-	static private int currentCountCities;
-	static private String lastCity;
+	private int spreadValues = 20;
+	private boolean start = true;
+	private boolean endOfGame = false;
+	private boolean isSetMaxCountCities = false;
+	private int maxCountCities;
+	private int currentCountCities;
+	private String lastCity;
 
-	public static void reboot() {
+	public void reboot() {
 		start = true;
 		isSetMaxCountCities = false;
 		endOfGame = false;
@@ -20,7 +20,7 @@ public class TownsData {
 		lastCity = null;
 	}
 
-	public static void setMaxCountCities(DifficultLevel lvl) {
+	public void setMaxCountCities(DifficultLevel lvl) {
 		if (!isSetMaxCountCities) {
 			switch (lvl) {
 			case Easy:
@@ -40,43 +40,43 @@ public class TownsData {
 		}
 	}
 
-	static protected void firstCityWas() {
+	protected void firstCityWas() {
 		start = false;
 	}
 
-	static protected void continueGame() {
+	protected void continueGame() {
 		endOfGame = false;
 	}
 
-	static protected void endOfGame() {
+	protected void endOfGame() {
 		endOfGame = true;
 	}
 
-	static protected void increaseCurrentCities() {
+	protected void increaseCurrentCities() {
 		currentCountCities++;
 	}
 
-	static protected int getCurrentCountCities() {
+	protected int getCurrentCountCities() {
 		return currentCountCities;
 	}
 
-	public static int getMaxCountCities() {
+	public int getMaxCountCities() {
 		return maxCountCities;
 	}
 
-	public static boolean isEndOfGame() {
+	public boolean isEndOfGame() {
 		return endOfGame;
 	}
 
-	public static boolean isStart() {
+	public boolean isStart() {
 		return start;
 	}
 
-	static protected void setLastCity(String s) {
+	protected void setLastCity(String s) {
 		lastCity = s;
 	}
 
-	static protected String getLastCity() {
+	protected String getLastCity() {
 		return lastCity;
 	}
 }

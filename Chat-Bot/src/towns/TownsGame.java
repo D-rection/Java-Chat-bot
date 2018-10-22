@@ -16,12 +16,15 @@ public class TownsGame implements TopicConversation {
 		}
 	};
 
+	private TownsData townsData = new TownsData();
+	private TownsMemory townsMemory = new TownsMemory();
+	
 	public AnswerData getAnswerData(InputData input) {
-		if (TownsData.isEndOfGame())
+		if (townsData.isEndOfGame())
 			return endOfGame(input);
-		if (TownsData.isStart()) {
+		if (townsData.isStart()) {
 			reboot();
-			TownsData.firstCityWas();
+			townsData.firstCityWas();
 			return start(input);
 		}
 		String currentMove = "какая-то строка";
@@ -35,7 +38,7 @@ public class TownsGame implements TopicConversation {
 		}
 		switch (currentMove) {
 		case "endOfGame": {
-			TownsData.endOfGame();
+			townsData.endOfGame();
 			return new AnswerData("Вы точно хотите завершить игру?", true);
 		}
 		default:
@@ -45,14 +48,15 @@ public class TownsGame implements TopicConversation {
 	}
 
 	private AnswerData start(InputData input) {
-		String answer = TownsMemory.getUnusedTown("Ыа");
-		TownsData.setLastCity(answer);
+		String answer = townsMemory.getUnusedTown("Ыа");
+		townsData.setLastCity(answer);
 		return new AnswerData(answer, true);
 	}
 
 	private AnswerData nextCity(InputData input) {
 		if (!equalsFirstAndLastLetter(input.textMessage)) {
-			String answer = "Первая буква \"" + input.textMessage + "\" и последняя буква \"" + TownsData.getLastCity()
+			String answer = "Первая буква \"" + input.textMessage 
+					+ "\" и последняя буква \"" + townsData.getLastCity()
 					+ "\" не совпадают. Вы проиграли.";
 			reboot();
 			return new AnswerData(answer, false);
@@ -68,10 +72,10 @@ public class TownsGame implements TopicConversation {
 			reboot();
 			return new AnswerData(answer, false);
 		}
-		TownsMemory.useTown(getTrueNameCity(input.textMessage));
-		String answer = TownsMemory.getUnusedTown(input.textMessage);
+		townsMemory.useTown(getTrueNameCity(input.textMessage));
+		String answer = townsMemory.getUnusedTown(input.textMessage);
 		if (answer != null) {
-			TownsData.setLastCity(answer);
+			townsData.setLastCity(answer);
 			return new AnswerData(answer, true);
 		}
 		reboot();
@@ -86,11 +90,11 @@ public class TownsGame implements TopicConversation {
 	}
 
 	private boolean checkInUnused(String s) {
-		return TownsMemory.containsUnusedTowns(getTrueNameCity(s));
+		return townsMemory.containsUnusedTowns(getTrueNameCity(s));
 	}
 
 	private boolean checkInUsed(String s) {
-		return TownsMemory.containsUsedTowns(getTrueNameCity(s));
+		return townsMemory.containsUsedTowns(getTrueNameCity(s));
 	}
 
 	private Character getLastLetter(String s) {
@@ -103,14 +107,14 @@ public class TownsGame implements TopicConversation {
 
 	private boolean equalsFirstAndLastLetter(String s) {
 		String str = s.toLowerCase();
-		Character c = getLastLetter(TownsData.getLastCity());
+		Character c = getLastLetter(townsData.getLastCity());
 		Character d = str.charAt(0);
 		return c.equals(d);
 	}
 
 	private void reboot() {
-		TownsData.reboot();
-		TownsMemory.reboot();
+		townsData.reboot();
+		townsMemory.reboot();
 	}
 
 	private AnswerData endOfGame(InputData input) {
@@ -121,8 +125,8 @@ public class TownsGame implements TopicConversation {
 			return new AnswerData("Спасибо, было приятно поиграть. Приходи ещё!", false);
 		}
 		if (userAnswer.equals("нет")) {
-			TownsData.continueGame();
-			String answer = "Давай продолжим тогда. Последним был город: " + TownsData.getLastCity();
+			townsData.continueGame();
+			String answer = "Давай продолжим тогда. Последним был город: " + townsData.getLastCity();
 			return new AnswerData(answer, true);
 		}
 		return new AnswerData(

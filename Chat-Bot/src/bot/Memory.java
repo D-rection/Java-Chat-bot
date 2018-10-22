@@ -18,69 +18,69 @@ public class Memory {
 			"Простите, но это очень личный вопрос.", "Не уверен, что Вам понравится ответ.",
 			"Поверьте, я сам хотел бы это знать.", "Вы действительно хотите это знать?",
 			"Уверен, Вы уже догадались сами.", "Зачем Вам такая информация?", "Давайте сохраним интригу?" };
-	Map<String, TopicConversation> patternsForAnalysis = new HashMap<String, TopicConversation>() {
+	Map<String, NameTopics> patternsForAnalysis = new HashMap<String, NameTopics>() {
 		{
 			// hello
-			put("хай", new Hello());
-			put("привет", new Hello());
-			put("здорово", new Hello());
-			put("здравствуй", new Hello());
-			put("здаровки", new Hello());
+			put("хай", NameTopics.Hello);
+			put("привет", NameTopics.Hello);
+			put("здорово", NameTopics.Hello);
+			put("здравствуй", NameTopics.Hello);
+			put("здаровки", NameTopics.Hello);
 			// whatcan
-			put("что\\s.*можешь",  new WhatCan());
-			put("что\\s.*умеешь",  new WhatCan());
+			put("что\\s.*можешь",  NameTopics.WhatCan);
+			put("что\\s.*умеешь",  NameTopics.WhatCan);
 			// howareyou
-			put("как\\s.*дела", new HowAreYou());
-			put("как\\s.*жизнь", new HowAreYou());
+			put("как\\s.*дела", NameTopics.HowAreYou);
+			put("как\\s.*жизнь", NameTopics.HowAreYou);
 			// whatareyoudoing
-			put("зачем\\s.*тут", new WhatAreYouDoing());
-			put("зачем\\s.*здесь", new WhatAreYouDoing());
-			put("что\\s.*делаешь", new WhatAreYouDoing());
-			put("чем\\s.*занимаешься", new WhatAreYouDoing());
-			put("что\\s.*творишь", new WhatAreYouDoing());
-			put("чем\\s.*занят", new WhatAreYouDoing());
+			put("зачем\\s.*тут", NameTopics.WhatAreYouDoing);
+			put("зачем\\s.*здесь", NameTopics.WhatAreYouDoing);
+			put("что\\s.*делаешь", NameTopics.WhatAreYouDoing);
+			put("чем\\s.*занимаешься", NameTopics.WhatAreYouDoing);
+			put("что\\s.*творишь", NameTopics.WhatAreYouDoing);
+			put("чем\\s.*занят", NameTopics.WhatAreYouDoing);
 			// whatday
-			put("какой\\s.*день",  new WhatDay());
-			put("какое\\s.*число",  new WhatDay());
-			put("какой\\\\s.*день",  new WhatDay());
-			put("какой\\\\s.*число",  new WhatDay());
+			put("какой\\s.*день", NameTopics.WhatDay);
+			put("какое\\s.*число", NameTopics.WhatDay);
+			put("какой\\\\s.*день", NameTopics.WhatDay);
+			put("какой\\\\s.*число", NameTopics.WhatDay);
 			// whattime
-			put("который\\s.*час", new WhatTime());
-			put("сколько\\s.*время", new WhatTime());
+			put("который\\s.*час", NameTopics.WhatTime);
+			put("сколько\\s.*время", NameTopics.WhatTime);
 			// bye
-			put("прощай", new Bye());
-			put("пока", new Bye());
-			put("покеда", new Bye());
-			put("увидимся", new Bye());
-			put("до\\s.*свидания", new Bye());
+			put("прощай", NameTopics.Bye);
+			put("пока", NameTopics.Bye);
+			put("покеда", NameTopics.Bye);
+			put("увидимся", NameTopics.Bye);
+			put("до\\s.*свидания", NameTopics.Bye);
 			// whatwatch
-			put("что\\s.*посмотреть", new WhatWatch());
-			put("что\\s.глянуть", new WhatWatch());
+			put("что\\s.*посмотреть", NameTopics.WhatWatch);
+			put("что\\s.глянуть", NameTopics.WhatWatch);
 			// cartoon
-			put("мультфильм", new Cartoon());
-			put("мультик", new Cartoon());
-			put("какой\\s.*мультфильм", new Cartoon());
-			put("подскажи\\s.*мультфильм", new Cartoon());
-			put("посоветуй\\s.*мультфильм", new Cartoon());
+			put("мультфильм", NameTopics.Cartoon);
+			put("мультик", NameTopics.Cartoon);
+			put("какой\\s.*мультфильм",NameTopics.Cartoon);
+			put("подскажи\\s.*мультфильм", NameTopics.Cartoon);
+			put("посоветуй\\s.*мультфильм", NameTopics.Cartoon);
 			// film
-			put("фильм", new Film());
-			put("фильмец", new Film());
-			put("какой\\s.*фильм", new Film());
-			put("подскажи\\s.*фильм", new Film());
-			put("посоветуй\\s.*фильм", new Film());
+			put("фильм", NameTopics.Film);
+			put("фильмец", NameTopics.Film);
+			put("какой\\s.*фильм", NameTopics.Film);
+			put("подскажи\\s.*фильм", NameTopics.Film);
+			put("посоветуй\\s.*фильм", NameTopics.Film);
 			// series
-			put("сериал", new Series());
-			put("сериальчик", new Series());
-			put("какой\\s.*сериал", new Series());
-			put("подскажи\\s.*сериал", new Series());
-			put("посоветуй\\s.*сериал", new Series());
+			put("сериал", NameTopics.Series);
+			put("сериальчик", NameTopics.Series);
+			put("какой\\s.*сериал", NameTopics.Series);
+			put("подскажи\\s.*сериал", NameTopics.Series);
+			put("посоветуй\\s.*сериал", NameTopics.Series);
 			// towns
-			put("города", new TownsGame());
+			put("города", NameTopics.TownsGame);
 			// numbers
-			put("поиграем\\s.*числа", new PlayNumbers());
-			put("сыграем\\s.*числа", new PlayNumbers());
-			put("отгадывать",  new PlayNumbers());
-			put("загадывать", new PlayNumbers());
+			put("поиграем\\s.*числа", NameTopics.PlayNumbers);
+			put("сыграем\\s.*числа", NameTopics.PlayNumbers);
+			put("отгадывать", NameTopics.PlayNumbers);
+			put("загадывать", NameTopics.PlayNumbers);
 		}
 	};
 }

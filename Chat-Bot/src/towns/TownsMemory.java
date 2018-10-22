@@ -15,27 +15,27 @@ import java.util.List;
 
 
 public class TownsMemory {
-	static private HashSet<String> unusedTowns = new HashSet<String>();
-	static private HashSet<String> usedTowns = new HashSet<String>();
-	static private HashMap<String, List<String>> firstLetterLists = new HashMap<String, List<String>>();
-	static private String pathOriginalInfo = "src/files/OriginalTowns.txt";
+	private HashSet<String> unusedTowns = new HashSet<String>();
+	private HashSet<String> usedTowns = new HashSet<String>();
+	private HashMap<String, List<String>> firstLetterLists = new HashMap<String, List<String>>();
+	private String pathOriginalInfo = "src/files/OriginalTowns.txt";
 
-	static public boolean containsUnusedTowns(String str) {
+	public boolean containsUnusedTowns(String str) {
 		return unusedTowns.contains(str);
 	}
 
-	static public boolean containsUsedTowns(String str) {
+	public boolean containsUsedTowns(String str) {
 		return usedTowns.contains(str);
 	}
 
-	static public void useTown(String s) {
+	public void useTown(String s) {
 		String firstLetter = getFirstLetter(s);
 		firstLetterLists.get(firstLetter).remove(s);
 		unusedTowns.remove(s);
 		usedTowns.add(s);
 	}
 
-	static public String getUnusedTown(String lastTown) {
+	public String getUnusedTown(String lastTown) {
 		String lastLetter = getLastLetter(lastTown).toUpperCase();
 		List<String> currentList = firstLetterLists.get(lastLetter);
 		if (currentList.size() == 0)
@@ -46,7 +46,7 @@ public class TownsMemory {
 		return town;
 	}
 
-	static private String getLastLetter(String s) {
+	private String getLastLetter(String s) {
 		int i = 1;
 		while (s.charAt(s.length() - i) == 'ь' || s.charAt(s.length() - i) == 'ы') {
 			i++;
@@ -54,11 +54,11 @@ public class TownsMemory {
 		return s.substring(s.length() - i, s.length() - i + 1);
 	}
 
-	static private String getFirstLetter(String s) {
+	private String getFirstLetter(String s) {
 		return s.substring(0, 1);
 	}
 
-	static public void reboot() {
+	public void reboot() {
 		unusedTowns.clear();
 		String prevFirst = null;
 		try(BufferedReader reader = new BufferedReader(
