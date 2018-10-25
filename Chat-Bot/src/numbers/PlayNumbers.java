@@ -6,6 +6,8 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class PlayNumbers implements TopicConversation {
+	
+	private UnknowNumber unknowNumber;
 
 	public AnswerData getAnswerData(InputData input) {
 		Pattern pattern1 = Pattern.compile("сыграем|поиграем");
@@ -19,16 +21,20 @@ public class PlayNumbers implements TopicConversation {
 			return new AnswerData("Хорошо давай сыграем. Ты хочешь отгадывать или загадывать?", true);
 		} else if (pattern2.matcher(mess).find() || pattern3.matcher(mess).find()) {
 			if (pattern2.matcher(mess).find()) {
-				UnknowNumber.setBotNumber((int) Math.floor(Math.random() * 100));
+				unknowNumber = new UnknowNumber();
+				unknowNumber.setBotNumber((int) Math.floor(Math.random() * 100));
 			}
-			String answer = new GuessNumber().getAnswer(mess);
+			String answer = new GuessNumber().getAnswer(mess, unknowNumber);
 			if (answer == "Ты угадал!") {
 				return new AnswerData(answer, false);
 			} else {
 				return new AnswerData(answer, true);
 			}
 		} else if (pattern4.matcher(mess).find() || pattern5.matcher(mess).find() || pattern6.matcher(mess).find()) {
-			String answer = new MakeNumber().getAnswer(mess);
+			if (pattern4.matcher(mess).find()) {
+				unknowNumber = new UnknowNumber();
+			}
+			String answer = new MakeNumber().getAnswer(mess, unknowNumber);
 			if (mess == "угадал") {
 				return new AnswerData(answer, false);
 			} else {
