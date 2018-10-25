@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class GuessNumber {
 
-	public String getAnswer(String mess) {
+	public String getAnswer(String mess, UnknowNumber unknowNumber) {
 
 		Pattern pattern1 = Pattern.compile("отгадывать");
 
@@ -13,9 +13,9 @@ public class GuessNumber {
 		} else {
 			String number = mess.replaceAll("[^0-9]", "");
 			int UserNumber = Integer.parseInt(number);
-			if (UserNumber > UnknowNumber.getBotNumber()) {
+			if (UserNumber > unknowNumber.getBotNumber()) {
 				return "Моё число меньше.";
-			} else if (UserNumber < UnknowNumber.getBotNumber()) {
+			} else if (UserNumber < unknowNumber.getBotNumber()) {
 				return "Моё число больше.";
 			} else {
 				return "Ты угадал!";
