@@ -15,7 +15,7 @@ public class MakeNumber {
 			return "Окей.Загадай число от 0 до 100:) Моя задача его отгадать))) Только давай мне подсказки(меньше/больше):D Когда угадаю напиши:'угадал'))) Ты готов?";
 		} else if (pattern2.matcher(mess).find()) {
 			return "Урааа!!!Было приятно с тобой поиграть)))";
-		} else {
+		} else if (pattern3.matcher(mess).find() || pattern4.matcher(mess).find()) {
 			if (pattern3.matcher(mess).find()) {
 				unknowNumber.setMaxNumber(unknowNumber.getBotNumber());
 			} else if (pattern4.matcher(mess).find()) {
@@ -24,6 +24,8 @@ public class MakeNumber {
 			unknowNumber.setBotNumber(
 					unknowNumber.getMinNumber() + (unknowNumber.getMaxNumber() - unknowNumber.getMinNumber()) / 2);
 			return unknowNumber.getBotNumber() + "?";
+		} else {
+			return "Это не верный ответ!!!Ты проиграл(";
 		}
 	}
 
