@@ -6,7 +6,7 @@ public class UnknowNumber {
 	private int currentMaxNumber;
 
 	public void setBotNumber(int c) {
-		if (c >= 0 || c <= 100) {
+		if (c >= 0 && c <= 100) {
 			botNumber = c;
 		} else {
 			throw new NumberFormatException("The number does not match the range");
@@ -18,7 +18,7 @@ public class UnknowNumber {
 	}
 
 	public void setMinNumber(int c) {
-		if (c >= 0 || c <= 100) {
+		if (c >= 0 && c <= 100) {
 			currentMinNumber = c;
 		} else {
 			throw new NumberFormatException("The number does not match the range");
@@ -28,9 +28,9 @@ public class UnknowNumber {
 	public int getMinNumber() {
 		return currentMinNumber;
 	}
-	
+
 	public void setMaxNumber(int c) {
-		if (c >= 0 || c <= 100) {
+		if (c >= 0 && c <= 100) {
 			currentMaxNumber = c;
 		} else {
 			throw new NumberFormatException("The number does not match the range");
