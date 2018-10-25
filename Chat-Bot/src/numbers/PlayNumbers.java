@@ -6,7 +6,7 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class PlayNumbers implements TopicConversation {
-	
+
 	private UnknowNumber unknowNumber;
 
 	public AnswerData getAnswerData(InputData input) {
