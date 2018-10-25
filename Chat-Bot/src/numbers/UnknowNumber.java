@@ -1,12 +1,11 @@
 package numbers;
 
 public class UnknowNumber {
-	private static int botNumber;
-	private static int currentMinNumber;
-	private static int currentMaxNumber;
-	
+	private int botNumber;
+	private int currentMinNumber;
+	private int currentMaxNumber;
 
-	public static void setBotNumber(int c) {
+	public void setBotNumber(int c) {
 		if (c >= 0 || c <= 100) {
 			botNumber = c;
 		} else {
@@ -14,11 +13,11 @@ public class UnknowNumber {
 		}
 	}
 
-	public static int getBotNumber() {
+	public int getBotNumber() {
 		return botNumber;
 	}
 
-	public static void setMinNumber(int c) {
+	public void setMinNumber(int c) {
 		if (c >= 0 || c <= 100) {
 			currentMinNumber = c;
 		} else {
@@ -26,11 +25,11 @@ public class UnknowNumber {
 		}
 	}
 
-	public static int getMinNumber() {
+	public int getMinNumber() {
 		return currentMinNumber;
 	}
 	
-	public static void setMaxNumber(int c) {
+	public void setMaxNumber(int c) {
 		if (c >= 0 || c <= 100) {
 			currentMaxNumber = c;
 		} else {
@@ -38,7 +37,7 @@ public class UnknowNumber {
 		}
 	}
 
-	public static int getMaxNumber() {
+	public int getMaxNumber() {
 		return currentMaxNumber;
 	}
 
