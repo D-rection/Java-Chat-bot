@@ -20,7 +20,7 @@ class ChatBotMax extends JFrame implements ActionListener {
 
 	JTextPane dialogue; // Поле диалога
 	JTextField message; // Поле для ввода сообщения
-	Bot sbot; // Класс бота
+	ChatBot sbot; // Класс бота
 	SimpleAttributeSet botStyle; // Стиль текста бота
 	SimpleAttributeSet userStyle; // Стиль текста пользователя
 
@@ -71,7 +71,7 @@ class ChatBotMax extends JFrame implements ActionListener {
 		add(BorderLayout.CENTER, scrollBar);
 		add(BorderLayout.SOUTH, bp);
 		setVisible(true);
-		sbot = new Bot(); // Создание объекта бота
+		sbot = new ChatBot(); // Создание объекта бота
 	}
 
 	/**
