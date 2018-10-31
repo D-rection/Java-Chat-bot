@@ -16,7 +16,7 @@ public class PlayNumbers implements TopicConversation {
 		Pattern pattern4 = Pattern.compile("загадывать");
 		Pattern pattern5 = Pattern.compile("готов|да");
 		Pattern pattern6 = Pattern.compile("меньше|больше");
-		String mess = input.textMessage;
+		String mess = input.textMessage.toLowerCase();
 		if (pattern1.matcher(mess).find()) {
 			return new AnswerData("Хорошо давай сыграем. Ты хочешь отгадывать или загадывать?", true);
 		} else if (pattern2.matcher(mess).find() || pattern3.matcher(mess).find()) {

@@ -13,7 +13,7 @@ import bot.ChatBot;
 
 public class Example extends TelegramLongPollingBot
 {
-	private ChatBot chatBot = new ChatBot();
+	private Map<Long, ChatBot> chatBots = new HashMap<Long, ChatBot>();
 	
 	public static void main(String[] args) 
     {
@@ -53,9 +53,11 @@ public class Example extends TelegramLongPollingBot
 		Message message = e.getMessage();
 		if (message != null && message.hasText())
 		{
-			sendMessage(message, chatBot.sayInReturn(message.getText()));
+			if (!chatBots.containsKey(message.getChatId()))
+				chatBots.put(message.getChatId(), new ChatBot());
+			sendMessage(message, chatBots.get(message.getChatId())
+					.sayInReturn(message.getText()));
 		}
-		// Тут будет то, что выполняется при получении сообщения
 	}
 
 	@Override
