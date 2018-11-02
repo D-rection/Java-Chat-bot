@@ -2,7 +2,6 @@ package answers;
 
 import bot.TopicConversation;
 import bot.AnswerData;
-import bot.BaseTopicConversation;
 import bot.InputData;
 
 public class Cartoon extends BaseTopicConversation implements TopicConversation {
