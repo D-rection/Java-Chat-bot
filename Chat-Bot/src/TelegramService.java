@@ -11,18 +11,21 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import bot.ChatBot;
 
-public class Example extends TelegramLongPollingBot
+public class TelegramService extends TelegramLongPollingBot
 {
-	private Map<Long, ActivityRecord> activityRecords = new HashMap<Long, ActivityRecord>();
+	static protected Map<Long, ActivityRecord> activityRecords = new HashMap<Long, ActivityRecord>();
 	
 	public static void main(String[] args) 
     {
 		ApiContextInitializer.init(); // Инициализируем апи
 		TelegramBotsApi botapi = new TelegramBotsApi();
-		ActivityChecker checker = new ActivityChecker(activityRecords);
+		ActivityChecker checker = new ActivityChecker();
+		Thread secondThread = new Thread(checker);
+		secondThread.start();
+		
 		try 
 		{
-			botapi.registerBot(new Example());
+			botapi.registerBot(new TelegramService());
 		} catch (TelegramApiException e) 
 		{
 		e.printStackTrace();
@@ -55,7 +58,10 @@ public class Example extends TelegramLongPollingBot
 		if (message != null && message.hasText())
 		{
 			if (!activityRecords.containsKey(message.getChatId()))
+			{				
 				activityRecords.put(message.getChatId(), new ActivityRecord());
+				sendMessage(message, "Привееет)" );
+			}
 			sendMessage(message, activityRecords.get(message.getChatId()).Bot
 					.sayInReturn(message.getText()));
 		}

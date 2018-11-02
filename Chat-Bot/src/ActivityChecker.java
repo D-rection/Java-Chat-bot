@@ -3,13 +3,11 @@ import java.util.HashMap;
 
 public class ActivityChecker implements Runnable
 {
-	private HashMap<Long, ActivityRecord> listActivityUsers = null;
-	
-	public ActivityChecker(HashMap<Long, ActivityRecord> dict)
+	public ActivityChecker()
 	{
-		listActivityUsers = dict;
+		
 	}
-	
+
 	@Override
 	public void run() 
 	{
@@ -19,13 +17,13 @@ public class ActivityChecker implements Runnable
 			{
 				Thread.currentThread().sleep(5000);
 				long timeControl = System.currentTimeMillis();
-				 for(Long id: listActivityUsers.keySet())
+				 for(Long id: TelegramService.activityRecords.keySet())
 				 { 
 					 long difference =  timeControl
-							 - listActivityUsers.get(id).TimeLastActivity;
+							 - TelegramService.activityRecords.get(id).TimeLastActivity;
 					 difference = difference / (1000 * 60);
 					 if(difference > 5)
-						 listActivityUsers.remove(id);
+						 TelegramService.activityRecords.remove(id);
 				 }
 			} catch (InterruptedException e) 
 			{
