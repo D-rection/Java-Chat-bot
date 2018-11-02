@@ -3,7 +3,6 @@ package answers;
 import bot.TopicConversation;
 import bot.AnswerData;
 import bot.InputData;
-import bot.BaseTopicConversation;
 
 public class Hello extends BaseTopicConversation implements TopicConversation {
 	public static String[] angryAnswers = {
