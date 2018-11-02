@@ -13,12 +13,13 @@ import bot.ChatBot;
 
 public class Example extends TelegramLongPollingBot
 {
-	private Map<Long, ChatBot> chatBots = new HashMap<Long, ChatBot>();
+	private Map<Long, ActivityRecord> activityRecords = new HashMap<Long, ActivityRecord>();
 	
 	public static void main(String[] args) 
     {
 		ApiContextInitializer.init(); // Инициализируем апи
 		TelegramBotsApi botapi = new TelegramBotsApi();
+		ActivityChecker checker = new ActivityChecker(activityRecords);
 		try 
 		{
 			botapi.registerBot(new Example());
@@ -53,9 +54,9 @@ public class Example extends TelegramLongPollingBot
 		Message message = e.getMessage();
 		if (message != null && message.hasText())
 		{
-			if (!chatBots.containsKey(message.getChatId()))
-				chatBots.put(message.getChatId(), new ChatBot());
-			sendMessage(message, chatBots.get(message.getChatId())
+			if (!activityRecords.containsKey(message.getChatId()))
+				activityRecords.put(message.getChatId(), new ActivityRecord());
+			sendMessage(message, activityRecords.get(message.getChatId()).Bot
 					.sayInReturn(message.getText()));
 		}
 	}
