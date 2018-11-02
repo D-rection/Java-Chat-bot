@@ -7,7 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry exported="true" kind="lib" path="TelegramBots-4.1/TelegramBots-4.1/telegrambots-4.1-jar-with-dependencies.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/USER/Documents/GitHub/Java-Chat-bot/Chat-Bot/ExternalLibrary/jsoup-1.11.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="ExternalLibrary/jsoup-1.11.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/USER/Documents/GitHub/Java-Chat-bot/Chat-Bot/ExternalLibrary/telegrambots-4.1-jar-with-dependencies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
