@@ -28,5 +28,4 @@ class WhatTimeTest {
 		Date date = new Date();
 		assertTrue(answer.equals(new SimpleDateFormat("'Сейчас' kk:mm").format(date)));
 	}
-
 }
