@@ -8,7 +8,6 @@ public class MakeNumber {
 		Pattern pattern2 = Pattern.compile("угадал");
 		Pattern pattern3 = Pattern.compile("меньше");
 		Pattern pattern4 = Pattern.compile("больше");
-		Pattern pattern5 = Pattern.compile("готов|да");
 
 		if (pattern1.matcher(mess).find()) {
 			unknowNumber.setMinNumber(0);
