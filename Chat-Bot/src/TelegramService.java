@@ -57,11 +57,8 @@ public class TelegramService extends TelegramLongPollingBot
 		Message message = e.getMessage();
 		if (message != null && message.hasText())
 		{
-			if (!activityRecords.containsKey(message.getChatId()))
-			{				
+			if (!activityRecords.containsKey(message.getChatId()))				
 				activityRecords.put(message.getChatId(), new ActivityRecord());
-				sendMessage(message, "Привееет)" );
-			}
 			sendMessage(message, activityRecords.get(message.getChatId()).Bot
 					.sayInReturn(message.getText()));
 		}
