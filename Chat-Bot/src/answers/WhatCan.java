@@ -5,7 +5,6 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class WhatCan implements TopicConversation {
-
 	public AnswerData getAnswerData(InputData input) {
 		StringBuilder strb = new StringBuilder();
 		strb.append("Пока я мало чего умею, но скоро этот список расширится.");
@@ -16,5 +15,4 @@ public class WhatCan implements TopicConversation {
 		String answer = strb.toString();
 		return new AnswerData(answer, false);
 	}
-
 }
