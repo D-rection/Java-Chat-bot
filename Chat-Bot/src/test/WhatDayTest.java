@@ -13,17 +13,6 @@ import bot.Attitude;
 import bot.InputData;
 
 class WhatDayTest {
-
-	@Test
-	void attitudeAngryTest() {
-		Attitude a = new Attitude();
-		for (int i = 0; i < 5; i++)
-			a.decreaseFriendliness();
-		WhatDay whatday = new WhatDay();
-		String answer = whatday.getAnswerData(new InputData(a, null, null)).getAnswer();
-		assertTrue(Arrays.asList(WhatDay.angryAnswers).contains(answer));
-	}
-
 	@Test
 	void attitudeNeutralTest() {
 		Attitude a = new Attitude();
