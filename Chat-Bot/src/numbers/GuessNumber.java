@@ -17,10 +17,8 @@ public class GuessNumber {
 				return "Моё число меньше.";
 			} else if (UserNumber < unknowNumber.getBotNumber()) {
 				return "Моё число больше.";
-			} else if (UserNumber == unknowNumber.getBotNumber()) {
-				return "Ты угадал!";
 			} else {
-				return "Это не верный ответ!!!Ты проиграл(";
+				return "Ты угадал!";
 			}
 		}
 	}

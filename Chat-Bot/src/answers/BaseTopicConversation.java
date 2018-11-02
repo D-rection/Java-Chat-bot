@@ -2,6 +2,10 @@ package answers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import bot.AnswerData;
+import bot.InputData;
+import bot.Mood;
+import bot.TopicConversation;
 
 import bot.AnswerData;
 import bot.InputData;
