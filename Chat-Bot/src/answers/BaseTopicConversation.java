@@ -2,6 +2,10 @@ package answers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import bot.AnswerData;
+import bot.InputData;
+import bot.Mood;
+import bot.TopicConversation;
 
 public abstract class BaseTopicConversation implements TopicConversation {
 	public AnswerData getAnswerData(InputData input, String[] angryAnswers, String[] neutralAnswers,
