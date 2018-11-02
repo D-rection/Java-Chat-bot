@@ -2,7 +2,6 @@ package answers;
 
 import bot.TopicConversation;
 import bot.AnswerData;
-import bot.BaseTopicConversation;
 import bot.InputData;
 
 public class Film extends BaseTopicConversation implements TopicConversation {
