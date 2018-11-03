@@ -8,6 +8,7 @@ package bot;
 import java.util.*;
 import java.util.regex.*;
 
+import Translator.TranslateService;
 import answers.Bye;
 import answers.Cartoon;
 import answers.Film;
@@ -50,6 +51,7 @@ public class ChatBot {
 		topics[NameTopics.WhatWatch.ordinal()] = new WhatWatch();
 		topics[NameTopics.Series.ordinal()] = new Series();
 		topics[NameTopics.TownsGame.ordinal()] = new TownsGame();
+		topics[NameTopics.TranslateService.ordinal()] = new TranslateService();
 	}
 	
 	public String sayInReturn(String msg) {

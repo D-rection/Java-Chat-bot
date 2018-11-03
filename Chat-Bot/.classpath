@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="ExternalLibrary/jsoup-1.11.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/USER/Documents/GitHub/Java-Chat-bot/Chat-Bot/ExternalLibrary/telegrambots-4.1-jar-with-dependencies.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
@@ -7,7 +9,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry exported="true" kind="lib" path="ExternalLibrary/jsoup-1.11.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/USER/Documents/GitHub/Java-Chat-bot/Chat-Bot/ExternalLibrary/telegrambots-4.1-jar-with-dependencies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

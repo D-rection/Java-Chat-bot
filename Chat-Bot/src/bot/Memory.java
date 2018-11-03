@@ -81,6 +81,10 @@ public class Memory {
 			put("сыграем\\s.*числа", NameTopics.PlayNumbers);
 			put("отгадывать", NameTopics.PlayNumbers);
 			put("загадывать", NameTopics.PlayNumbers);
+			//translate service
+			put("переведи", NameTopics.TranslateService);
+			put("можешь\\s.*перевести", NameTopics.TranslateService);
+			put("переводчик", NameTopics.TranslateService);
 		}
 	};
 }
