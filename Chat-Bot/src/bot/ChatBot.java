@@ -29,13 +29,17 @@ public class ChatBot {
 	private Memory memory = new Memory();
 	private TopicConversation currentConversation = null;
 	private InputData input = new InputData(null, null);
-	
+
+	//TODO Вместо 100 лучше использовать 42 (:
+	//TODO Если серьезно, то стоит в таких случаях использовать ArrayList<TopicConversation>, а лучше Map<NameTopics, TopicConversation>
 	private TopicConversation[] topics = new TopicConversation[100];
 
 	private void updateInputData(String userAnswer) {
 		input = new InputData(attitude, userAnswer);
 	}
-	
+
+	//TODO Так же не очень классная история хардкодить именно тут TopicConversation и отображение NameTopics в них
+	//TODO Я бы сделал следующее: добавил бы в TopicConversation поле или метод, который имеет имя NameTopics, приняли бы в конструкторе TopicConversation[] и сконвертил его в Map<NameTopics, TopicConversation>, если это действительно нужно :)
 	public ChatBot()
 	{
 		topics[NameTopics.WhatCan.ordinal()] = new WhatCan();
@@ -56,7 +60,8 @@ public class ChatBot {
 	
 	public String sayInReturn(String msg) {
 		updateInputData(msg);
-		String say = (msg.trim().endsWith("?")) ? memory.ELUSIVE_ANSWERS[random.nextInt(memory.ELUSIVE_ANSWERS.length)]
+		String say = (msg.trim().endsWith("?"))
+				? memory.ELUSIVE_ANSWERS[random.nextInt(memory.ELUSIVE_ANSWERS.length)]
 				: memory.COMMON_PHRASES[random.nextInt(memory.COMMON_PHRASES.length)];
 		if (currentConversation != null) {
 			AnswerData data = currentConversation.getAnswerData(input);
@@ -67,7 +72,9 @@ public class ChatBot {
 		}
 
 		String message = String.join(" ", msg.toLowerCase().split("[ {,|.}?]+"));
+		//TODO Вместо toLowerCase можно сделать регулярные выражения нечувствиительными к регистру
 		for (String stringKey : memory.patternsForAnalysis.keySet()) {
+			//TODO Зачем это делать постоянно? Можно же в patternsForAnalysis это сделать один раз
 			Pattern pattern = Pattern.compile(stringKey);
 			if (pattern.matcher(message).find()) {
 				AnswerData data = topics[memory.patternsForAnalysis.get(stringKey).ordinal()]

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//TODO неиспользуемый класс
 public class Parser {
     //  22.04  -  \d{2}\.\d{2}
     private Pattern pattern = Pattern.compile("\\d{2}\\.\\d{2}");

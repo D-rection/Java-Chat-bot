@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class InputData {
 	public Attitude currentAttitude;
 	public String textMessage;
+	//TODO log не используется нигде, кроме как в тестах.
 	public ArrayList<String> log = new ArrayList<String>();
 
 	public InputData(Attitude a, String s) {

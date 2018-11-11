@@ -13,6 +13,7 @@ import bot.ChatBot;
 
 public class TelegramService extends TelegramLongPollingBot
 {
+	//TODO Зачем тут static? Почему бы не передать в конструктор ActivityChecker?
 	static protected Map<Long, ActivityRecord> activityRecords = new HashMap<Long, ActivityRecord>();
 	
 	public static void main(String[] args) 
@@ -26,9 +27,10 @@ public class TelegramService extends TelegramLongPollingBot
 		try 
 		{
 			botapi.registerBot(new TelegramService());
-		} catch (TelegramApiException e) 
+		}
+		catch (TelegramApiException e)
 		{
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	
@@ -45,7 +47,6 @@ public class TelegramService extends TelegramLongPollingBot
 		sndMsg.setText(text);
 		try
 		{
-			execute(sndMsg);
 		} catch (Exception e)
 		{
 			e.printStackTrace();

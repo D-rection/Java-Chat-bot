@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 public class ActivityChecker implements Runnable
 {
+	//TODO Зачем нужен пустой конструктор?
 	public ActivityChecker()
 	{
 		
@@ -11,6 +12,8 @@ public class ActivityChecker implements Runnable
 	@Override
 	public void run() 
 	{
+		//TODO К сожалению, обновлять HashMap из двух потоков чревато бесконечными циклами из-за потоконебезопасности. Попробуйте взять какую-нибудь потокобезопасную реализацию Map
+		//TODO Круто, что вы удаляете данные на основе TimeLastActivity, однако, никто эту TimeLastActivity не обновляет
 		while(true)
 		{
 			try 
@@ -27,6 +30,7 @@ public class ActivityChecker implements Runnable
 				 }
 			} catch (InterruptedException e) 
 			{
+				//TODO Вы используете лучшие практики по обработки исключений :)
 				e.printStackTrace();
 			}
 			
