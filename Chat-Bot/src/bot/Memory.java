@@ -6,6 +6,7 @@ import answers.*;
 import numbers.*;
 import towns.TownsGame;
 
+//TODO В ообщем и целом, надо разобрать этот класс совсем. Подумайте, куда и как лучше убрать COMMON_PHRASES и ELUSIVE_ANSWERS
 public class Memory {
 	final String[] COMMON_PHRASES = { "Нет ничего ценнее слов, сказанных к месту и ко времени.",
 			"Порой молчание может сказать больше, нежели уйма слов.",
