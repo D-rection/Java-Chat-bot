@@ -8,6 +8,7 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class TownsGame implements TopicConversation {
+	//TODO Наверное, хватит просто List<String>?
 	private Map<String, String> patternToAnalysis = new HashMap<String, String>() {
 		{
 			put("наигрался", "endOfGame");
@@ -27,8 +28,11 @@ public class TownsGame implements TopicConversation {
 			townsData.firstCityWas();
 			return start(input);
 		}
+
 		String currentMove = "какая-то строка";
 		String message = String.join(" ", input.textMessage.toLowerCase().split("[ {,|.}?]+"));
+
+		//TODO Не очень понял, зачем вы это все сделали, когда тип currentmove только один(хорошо, два: выход и невыход)
 		for (String o : patternToAnalysis.keySet()) {
 			Pattern pattern = Pattern.compile(o);
 			if (pattern.matcher(message).find()) {
@@ -83,7 +87,7 @@ public class TownsGame implements TopicConversation {
 	}
 
 	private String getTrueNameCity(String s) {
-		String town = s.toLowerCase();
+		String town = s.toLowerCase(); //TODO town не используется
 		String d = s.substring(0, 1).toUpperCase();
 		d = d + s.substring(1);
 		return d;

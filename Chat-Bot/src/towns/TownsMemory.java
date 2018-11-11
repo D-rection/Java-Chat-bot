@@ -30,13 +30,16 @@ public class TownsMemory {
 
 	public void useTown(String s) {
 		String firstLetter = getFirstLetter(s);
+		//TODO Удаление из List<String> работает за O(N), не очень понятно, почему вы не использовали HashSet
 		firstLetterLists.get(firstLetter).remove(s);
 		unusedTowns.remove(s);
 		usedTowns.add(s);
 	}
 
+	//TODO Не очень понятно из названия метода, что после город в итоге станет использованным
 	public String getUnusedTown(String lastTown) {
 		String lastLetter = getLastLetter(lastTown).toUpperCase();
+		//TODO Наверное, get может вернуть так же и null, если в файле не оказалось города начиная с переданной буквы
 		List<String> currentList = firstLetterLists.get(lastLetter);
 		if (currentList.size() == 0)
 			return null;
@@ -46,20 +49,26 @@ public class TownsMemory {
 		return town;
 	}
 
+	//TODO Нужно возвращать char
+	//TODO Что если пришла пустая строка или состоящая из мягко-твердных знаков?
 	private String getLastLetter(String s) {
 		int i = 1;
+		//TODO Я бы завел HashSet<Character> букв исключений
 		while (s.charAt(s.length() - i) == 'ь' || s.charAt(s.length() - i) == 'ы') {
 			i++;
 		}
 		return s.substring(s.length() - i, s.length() - i + 1);
 	}
 
+	//TODO Нужно возвращать char
+	//TODO Что если пустая строка пришла на вход?
 	private String getFirstLetter(String s) {
 		return s.substring(0, 1);
 	}
 
 	public void reboot() {
 		unusedTowns.clear();
+		//TODO Не очень понятно, зачем читать из файла каждый раз
 		String prevFirst = null;
 		try(BufferedReader reader = new BufferedReader(
                 new InputStreamReader(

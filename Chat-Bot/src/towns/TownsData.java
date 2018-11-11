@@ -2,6 +2,7 @@ package towns;
 
 import answers.DifficultLevel;
 
+//TODO Разберитесь с модификаторами у методов(почему они protected?!)
 public class TownsData {
 	private int spreadValues = 20;
 	private boolean start = true;
