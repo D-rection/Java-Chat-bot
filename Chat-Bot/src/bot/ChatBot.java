@@ -30,9 +30,8 @@ public class ChatBot {
 	private TopicConversation currentConversation = null;
 	private InputData input = new InputData(null, null);
 
-	//TODO Вместо 100 лучше использовать 42 (:
 	//TODO Если серьезно, то стоит в таких случаях использовать ArrayList<TopicConversation>, а лучше Map<NameTopics, TopicConversation>
-	private TopicConversation[] topics = new TopicConversation[100];
+	private TopicConversation[] topics = new TopicConversation[42];
 
 	private void updateInputData(String userAnswer) {
 		input = new InputData(attitude, userAnswer);
@@ -71,19 +70,17 @@ public class ChatBot {
 			return data.getAnswer();
 		}
 
-		String message = String.join(" ", msg.toLowerCase().split("[ {,|.}?]+"));
+		String message = String.join(" ", msg.split("[ {,|.}?]+"));
 		//TODO Вместо toLowerCase можно сделать регулярные выражения нечувствиительными к регистру
-		for (String stringKey : memory.patternsForAnalysis.keySet()) {
-			//TODO Зачем это делать постоянно? Можно же в patternsForAnalysis это сделать один раз
-			Pattern pattern = Pattern.compile(stringKey);
+		for (Pattern pattern : memory.patternsForAnalysis.keySet()) {
 			if (pattern.matcher(message).find()) {
-				AnswerData data = topics[memory.patternsForAnalysis.get(stringKey).ordinal()]
+				AnswerData data = topics[memory.patternsForAnalysis.get(pattern).ordinal()]
 						.getAnswerData(input);
 				if (!data.saveTheme())
 					currentConversation = null;
 				else if (currentConversation == null)
 					currentConversation =topics[memory.patternsForAnalysis
-					                            .get(stringKey).ordinal()];
+					                            .get(pattern).ordinal()];
 				updateInputData(data.getAnswer());
 				return data.getAnswer();
 			}

@@ -60,6 +60,7 @@ public class TelegramService extends TelegramLongPollingBot
 		{
 			if (!activityRecords.containsKey(message.getChatId()))				
 				activityRecords.put(message.getChatId(), new ActivityRecord());
+			activityRecords.get(message.getChatId()).UpdateActivity();
 			sendMessage(message, activityRecords.get(message.getChatId()).Bot
 					.sayInReturn(message.getText()));
 		}

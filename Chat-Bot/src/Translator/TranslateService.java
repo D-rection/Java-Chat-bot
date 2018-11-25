@@ -9,6 +9,7 @@ import bot.InputData;
 import bot.TopicConversation;
 
 //TODO Пожалуйста, расскажите в чем архитектурная или техническая сложность в делании этой задачи?
+//Вы предлагаете это удалить?
 public class TranslateService implements TopicConversation
 {
 	private String targetLanguage = null;

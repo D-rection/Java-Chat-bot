@@ -2,6 +2,8 @@ package bot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+
 import answers.*;
 import numbers.*;
 import towns.TownsGame;
@@ -21,73 +23,73 @@ public class Memory {
 			"Уверен, Вы уже догадались сами.", "Зачем Вам такая информация?", "Давайте сохраним интригу?" };
 
 	//TODO Вот эти вот паттерны я бы так же перенес в соответствующие TopicConversation
-	Map<String, NameTopics> patternsForAnalysis = new HashMap<String, NameTopics>() {
+	Map<Pattern, NameTopics> patternsForAnalysis = new HashMap<Pattern, NameTopics>() {
 		{
 			// hello
-			put("хай", NameTopics.Hello);
-			put("привет", NameTopics.Hello);
-			put("здорово", NameTopics.Hello);
-			put("здравствуй", NameTopics.Hello);
-			put("здаровки", NameTopics.Hello);
+			put(Pattern.compile("хай"), NameTopics.Hello);
+			put(Pattern.compile("привет"), NameTopics.Hello);
+			put(Pattern.compile("здорово"), NameTopics.Hello);
+			put(Pattern.compile("здравствуй"), NameTopics.Hello);
+			put(Pattern.compile("здаровки"), NameTopics.Hello);
 			// whatcan
-			put("что\\s.*можешь",  NameTopics.WhatCan);
-			put("что\\s.*умеешь",  NameTopics.WhatCan);
+			put(Pattern.compile("что\\s.*можешь"),  NameTopics.WhatCan);
+			put(Pattern.compile("что\\s.*умеешь"),  NameTopics.WhatCan);
 			// howareyou
-			put("как\\s.*дела", NameTopics.HowAreYou);
-			put("как\\s.*жизнь", NameTopics.HowAreYou);
+			put(Pattern.compile("как\\s.*дела"), NameTopics.HowAreYou);
+			put(Pattern.compile("как\\s.*жизнь"), NameTopics.HowAreYou);
 			// whatareyoudoing
-			put("зачем\\s.*тут", NameTopics.WhatAreYouDoing);
-			put("зачем\\s.*здесь", NameTopics.WhatAreYouDoing);
-			put("что\\s.*делаешь", NameTopics.WhatAreYouDoing);
-			put("чем\\s.*занимаешься", NameTopics.WhatAreYouDoing);
-			put("что\\s.*творишь", NameTopics.WhatAreYouDoing);
-			put("чем\\s.*занят", NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("зачем\\s.*тут"), NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("зачем\\s.*здесь"), NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("что\\s.*делаешь"), NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("чем\\s.*занимаешься"), NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("что\\s.*творишь"), NameTopics.WhatAreYouDoing);
+			put(Pattern.compile("чем\\s.*занят"), NameTopics.WhatAreYouDoing);
 			// whatday
-			put("какой\\s.*день", NameTopics.WhatDay);
-			put("какое\\s.*число", NameTopics.WhatDay);
-			put("какой\\\\s.*день", NameTopics.WhatDay);
-			put("какой\\\\s.*число", NameTopics.WhatDay);
+			put(Pattern.compile("какой\\s.*день"), NameTopics.WhatDay);
+			put(Pattern.compile("какое\\s.*число"), NameTopics.WhatDay);
+			put(Pattern.compile("какой\\\\s.*день"), NameTopics.WhatDay);
+			put(Pattern.compile("какой\\\\s.*число"), NameTopics.WhatDay);
 			// whattime
-			put("который\\s.*час", NameTopics.WhatTime);
-			put("сколько\\s.*время", NameTopics.WhatTime);
+			put(Pattern.compile("который\\s.*час"), NameTopics.WhatTime);
+			put(Pattern.compile("сколько\\s.*время"), NameTopics.WhatTime);
 			// bye
-			put("прощай", NameTopics.Bye);
-			put("пока", NameTopics.Bye);
-			put("покеда", NameTopics.Bye);
-			put("увидимся", NameTopics.Bye);
-			put("до\\s.*свидания", NameTopics.Bye);
+			put(Pattern.compile("прощай"), NameTopics.Bye);
+			put(Pattern.compile("пока"), NameTopics.Bye);
+			put(Pattern.compile("покеда"), NameTopics.Bye);
+			put(Pattern.compile("увидимся"), NameTopics.Bye);
+			put(Pattern.compile("до\\s.*свидания"), NameTopics.Bye);
 			// whatwatch
-			put("что\\s.*посмотреть", NameTopics.WhatWatch);
-			put("что\\s.глянуть", NameTopics.WhatWatch);
+			put(Pattern.compile("что\\s.*посмотреть"), NameTopics.WhatWatch);
+			put(Pattern.compile("что\\s.глянуть"), NameTopics.WhatWatch);
 			// cartoon
-			put("мультфильм", NameTopics.Cartoon);
-			put("мультик", NameTopics.Cartoon);
-			put("какой\\s.*мультфильм",NameTopics.Cartoon);
-			put("подскажи\\s.*мультфильм", NameTopics.Cartoon);
-			put("посоветуй\\s.*мультфильм", NameTopics.Cartoon);
+			put(Pattern.compile("мультфильм"), NameTopics.Cartoon);
+			put(Pattern.compile("мультик"), NameTopics.Cartoon);
+			put(Pattern.compile("какой\\s.*мультфильм"), NameTopics.Cartoon);
+			put(Pattern.compile("подскажи\\s.*мультфильм"), NameTopics.Cartoon);
+			put(Pattern.compile("посоветуй\\s.*мультфильм"), NameTopics.Cartoon);
 			// film
-			put("фильм", NameTopics.Film);
-			put("фильмец", NameTopics.Film);
-			put("какой\\s.*фильм", NameTopics.Film);
-			put("подскажи\\s.*фильм", NameTopics.Film);
-			put("посоветуй\\s.*фильм", NameTopics.Film);
+			put(Pattern.compile("фильм"), NameTopics.Film);
+			put(Pattern.compile("фильмец"), NameTopics.Film);
+			put(Pattern.compile("какой\\s.*фильм"), NameTopics.Film);
+			put(Pattern.compile("подскажи\\s.*фильм"), NameTopics.Film);
+			put(Pattern.compile("посоветуй\\s.*фильм"), NameTopics.Film);
 			// series
-			put("сериал", NameTopics.Series);
-			put("сериальчик", NameTopics.Series);
-			put("какой\\s.*сериал", NameTopics.Series);
-			put("подскажи\\s.*сериал", NameTopics.Series);
-			put("посоветуй\\s.*сериал", NameTopics.Series);
+			put(Pattern.compile("сериал"), NameTopics.Series);
+			put(Pattern.compile("сериальчик"), NameTopics.Series);
+			put(Pattern.compile("какой\\s.*сериал"), NameTopics.Series);
+			put(Pattern.compile("подскажи\\s.*сериал"), NameTopics.Series);
+			put(Pattern.compile("посоветуй\\s.*сериал"), NameTopics.Series);
 			// towns
-			put("города", NameTopics.TownsGame);
+			put(Pattern.compile("города"), NameTopics.TownsGame);
 			// numbers
-			put("поиграем\\s.*числа", NameTopics.PlayNumbers);
-			put("сыграем\\s.*числа", NameTopics.PlayNumbers);
-			put("отгадывать", NameTopics.PlayNumbers);
-			put("загадывать", NameTopics.PlayNumbers);
+			put(Pattern.compile("поиграем\\s.*числа"), NameTopics.PlayNumbers);
+			put(Pattern.compile("сыграем\\s.*числа"), NameTopics.PlayNumbers);
+			put(Pattern.compile("отгадывать"), NameTopics.PlayNumbers);
+			put(Pattern.compile("загадывать"), NameTopics.PlayNumbers);
 			//translate service
-			put("переведи", NameTopics.TranslateService);
-			put("можешь\\s.*перевести", NameTopics.TranslateService);
-			put("переводчик", NameTopics.TranslateService);
+			put(Pattern.compile("переведи"), NameTopics.TranslateService);
+			put(Pattern.compile("можешь\\s.*перевести"), NameTopics.TranslateService);
+			put(Pattern.compile("переводчик"), NameTopics.TranslateService);
 		}
 	};
 }

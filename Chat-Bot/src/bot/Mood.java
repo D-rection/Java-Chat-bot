@@ -1,5 +1,5 @@
 package bot;
 
 public enum Mood {
-	Angry, Neutral, Cheerful
+	VeryAngry,Angry, SomeAngy, NeutralAngry, Neutral, NeutralCheerful,SomeCheerful,  Cheerful, VeryCheerful
 }
