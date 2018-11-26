@@ -2,7 +2,6 @@ package towns;
 
 import answers.DifficultLevel;
 
-//TODO Разберитесь с модификаторами у методов(почему они protected?!)
 public class TownsData {
 	private int spreadValues = 20;
 	private boolean start = true;
@@ -41,19 +40,19 @@ public class TownsData {
 		}
 	}
 
-	protected void firstCityWas() {
+	public void firstCityWas() {
 		start = false;
 	}
 
-	protected void continueGame() {
+	public void continueGame() {
 		endOfGame = false;
 	}
 
-	protected void endOfGame() {
+	public void endOfGame() {
 		endOfGame = true;
 	}
 
-	protected void increaseCurrentCities() {
+	public void increaseCurrentCities() {
 		currentCountCities++;
 	}
 
@@ -73,11 +72,11 @@ public class TownsData {
 		return start;
 	}
 
-	protected void setLastCity(String s) {
+	public void setLastCity(String s) {
 		lastCity = s;
 	}
 
-	protected String getLastCity() {
+	public String getLastCity() {
 		return lastCity;
 	}
 }

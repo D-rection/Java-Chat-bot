@@ -1,6 +1,8 @@
 package towns;
 
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import bot.TopicConversation;
@@ -8,19 +10,21 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class TownsGame implements TopicConversation {
-	//TODO Наверное, хватит просто List<String>?
-	private Map<String, String> patternToAnalysis = new HashMap<String, String>() {
+	private HashSet<String> patternToAnalysis = new HashSet<String>() 
+	{
 		{
-			put("наигрался", "endOfGame");
-			put("давай закончим", "endOfGame");
-			put("хватит\\.*", "endOfGame");
+			add("наигрался");
+			add("давай закончим");
+			add("хватит");
 		}
 	};
 
 	private TownsData townsData = new TownsData();
 	private TownsMemory townsMemory = new TownsMemory();
+	private HashSet<Character> invalidCharacter = new HashSet<>(Arrays.asList('ъ','ь','ы'));
 	
-	public AnswerData getAnswerData(InputData input) {
+	public AnswerData getAnswerData(InputData input) 
+	{
 		if (townsData.isEndOfGame())
 			return endOfGame(input);
 		if (townsData.isStart()) {
@@ -28,36 +32,25 @@ public class TownsGame implements TopicConversation {
 			townsData.firstCityWas();
 			return start(input);
 		}
-
-		String currentMove = "какая-то строка";
 		String message = String.join(" ", input.textMessage.toLowerCase().split("[ {,|.}?]+"));
-
-		//TODO Не очень понял, зачем вы это все сделали, когда тип currentmove только один(хорошо, два: выход и невыход)
-		for (String o : patternToAnalysis.keySet()) {
-			Pattern pattern = Pattern.compile(o);
-			if (pattern.matcher(message).find()) {
-				currentMove = patternToAnalysis.get(o);
-				break;
-			}
-		}
-		switch (currentMove) {
-		case "endOfGame": {
+		if (patternToAnalysis.contains(message)) 
+		{
 			townsData.endOfGame();
 			return new AnswerData("Вы точно хотите завершить игру?", true);
 		}
-		default:
+		else
 			return nextCity(input);
-		}
-
 	}
 
-	private AnswerData start(InputData input) {
-		String answer = townsMemory.getUnusedTown("Ыа");
+	private AnswerData start(InputData input) 
+	{
+		String answer = townsMemory.getUnusedTownAndAddItToUsed("Яяа");
 		townsData.setLastCity(answer);
 		return new AnswerData(answer, true);
 	}
 
-	private AnswerData nextCity(InputData input) {
+	private AnswerData nextCity(InputData input) 
+	{
 		if (!equalsFirstAndLastLetter(input.textMessage)) {
 			String answer = "Первая буква \"" + input.textMessage 
 					+ "\" и последняя буква \"" + townsData.getLastCity()
@@ -77,7 +70,7 @@ public class TownsGame implements TopicConversation {
 			return new AnswerData(answer, false);
 		}
 		townsMemory.useTown(getTrueNameCity(input.textMessage));
-		String answer = townsMemory.getUnusedTown(input.textMessage);
+		String answer = townsMemory.getUnusedTownAndAddItToUsed(input.textMessage);
 		if (answer != null) {
 			townsData.setLastCity(answer);
 			return new AnswerData(answer, true);
@@ -86,42 +79,52 @@ public class TownsGame implements TopicConversation {
 		return new AnswerData("Я не смог подобрать нужного названия(" + "Вы выиграли", false);
 	}
 
-	private String getTrueNameCity(String s) {
-		String town = s.toLowerCase(); //TODO town не используется
+	private String getTrueNameCity(String s) 
+	{
 		String d = s.substring(0, 1).toUpperCase();
 		d = d + s.substring(1);
 		return d;
 	}
 
-	private boolean checkInUnused(String s) {
+	private boolean checkInUnused(String s) 
+	{
 		return townsMemory.containsUnusedTowns(getTrueNameCity(s));
 	}
 
-	private boolean checkInUsed(String s) {
+	private boolean checkInUsed(String s) 
+	{
 		return townsMemory.containsUsedTowns(getTrueNameCity(s));
 	}
 
-	private Character getLastLetter(String s) {
+	private Character getLastLetter(String s) 
+	{
 		int i = 1;
-		while (s.charAt(s.length() - i) == 'ь' || s.charAt(s.length() - i) == 'ы') {
+		boolean trueInput = i <= s.length();
+		while (invalidCharacter.contains(s.charAt(s.length() - i)) && trueInput) 
+		{
 			i++;
+			if (i >= s.length())
+				trueInput = false;
 		}
-		return s.charAt(s.length() - i);
+		return trueInput ? s.charAt(s.length() - i) : null;
 	}
 
-	private boolean equalsFirstAndLastLetter(String s) {
+	private boolean equalsFirstAndLastLetter(String s) 
+	{
 		String str = s.toLowerCase();
 		Character c = getLastLetter(townsData.getLastCity());
 		Character d = str.charAt(0);
 		return c.equals(d);
 	}
 
-	private void reboot() {
+	private void reboot() 
+	{
 		townsData.reboot();
 		townsMemory.reboot();
 	}
 
-	private AnswerData endOfGame(InputData input) {
+	private AnswerData endOfGame(InputData input) 
+	{
 		String userAnswer = input.textMessage.toLowerCase().trim();
 		userAnswer = userAnswer.replaceAll("[^а-я]", "");
 		if (userAnswer.equals("да")) {

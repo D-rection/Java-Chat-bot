@@ -1,26 +1,33 @@
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.*;
 
 public class ActivityChecker implements Runnable
 {
+	private ConcurrentHashMap<Long, ActivityRecord> activityRecords = 
+			new ConcurrentHashMap<Long, ActivityRecord>();
+	
+	public ActivityChecker(ConcurrentHashMap<Long, ActivityRecord> records)
+	{
+		activityRecords = records;
+	}
 
 	@Override
 	public void run() 
 	{
-		//TODO К сожалению, обновлять HashMap из двух потоков чревато бесконечными циклами из-за потоконебезопасности. Попробуйте взять какую-нибудь потокобезопасную реализацию Map
 		while(true)
 		{
 			try 
 			{
 				Thread.currentThread().sleep(5000);
 				long timeControl = System.currentTimeMillis();
-				 for(Long id: TelegramService.activityRecords.keySet())
+				 for(Long id: activityRecords.keySet())
 				 { 
 					 long difference =  timeControl
-							 - TelegramService.activityRecords.get(id).GetTimeLastActivity();
+							 - activityRecords.get(id).GetTimeLastActivity();
 					 difference = difference / (1000 * 60);
 					 if(difference > 5)
-						 TelegramService.activityRecords.remove(id);
+						 activityRecords.remove(id);
 				 }
 			} catch (InterruptedException e) 
 			{

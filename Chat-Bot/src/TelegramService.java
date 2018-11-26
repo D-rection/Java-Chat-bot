@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.*;
 
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -13,17 +14,16 @@ import bot.ChatBot;
 
 public class TelegramService extends TelegramLongPollingBot
 {
-	//TODO Зачем тут static? Почему бы не передать в конструктор ActivityChecker?
-	static protected Map<Long, ActivityRecord> activityRecords = new HashMap<Long, ActivityRecord>();
+	private ConcurrentHashMap<Long, ActivityRecord> activityRecords = 
+			new ConcurrentHashMap<Long, ActivityRecord>();
+	private ActivityChecker checker = new ActivityChecker(activityRecords);
+	private Thread secondThread = new Thread(checker);
+	private boolean startSecondThread = false;
 	
 	public static void main(String[] args) 
     {
 		ApiContextInitializer.init(); // Инициализируем апи
-		TelegramBotsApi botapi = new TelegramBotsApi();
-		ActivityChecker checker = new ActivityChecker();
-		Thread secondThread = new Thread(checker);
-		secondThread.start();
-		
+		TelegramBotsApi botapi = new TelegramBotsApi();	
 		try 
 		{
 			botapi.registerBot(new TelegramService());
@@ -35,7 +35,8 @@ public class TelegramService extends TelegramLongPollingBot
 	}
 	
 	@Override
-	public String getBotUsername() {
+	public String getBotUsername() 
+	{
 		return "FriendlyMaxbot";
 	}
 	
@@ -47,6 +48,7 @@ public class TelegramService extends TelegramLongPollingBot
 		sndMsg.setText(text);
 		try
 		{
+			execute(sndMsg);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -54,7 +56,13 @@ public class TelegramService extends TelegramLongPollingBot
 	}
 
 	@Override
-	public void onUpdateReceived(Update e) {
+	public void onUpdateReceived(Update e) 
+	{
+		if (!startSecondThread)
+		{
+			secondThread.start();
+			startSecondThread = true;
+		}
 		Message message = e.getMessage();
 		if (message != null && message.hasText())
 		{
