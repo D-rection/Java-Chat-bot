@@ -18,6 +18,13 @@ public class TownsGame implements TopicConversation {
 			add("хватит");
 		}
 	};
+	
+	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
+	{
+		{
+			add(Pattern.compile("города"));
+		}
+	};
 
 	private TownsData townsData = new TownsData();
 	private TownsMemory townsMemory = new TownsMemory();
@@ -138,5 +145,11 @@ public class TownsGame implements TopicConversation {
 		}
 		return new AnswerData(
 				"К сожалению, я пока ещё не очень умный бот и не понимаю тебя. " + "Ты будешь ещё играть?", true);
+	}
+
+	@Override
+	public HashSet<Pattern> getTriggers() 
+	{
+		return (HashSet<Pattern>) triggers.clone();
 	}
 }

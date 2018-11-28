@@ -2,14 +2,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.*;
 
+import Logger.Logger;
+import Logger.Record;
+
 public class ActivityChecker implements Runnable
 {
 	private ConcurrentHashMap<Long, ActivityRecord> activityRecords = 
 			new ConcurrentHashMap<Long, ActivityRecord>();
+	private Logger log;
 	
-	public ActivityChecker(ConcurrentHashMap<Long, ActivityRecord> records)
+	public ActivityChecker(ConcurrentHashMap<Long, ActivityRecord> records, Logger lg)
 	{
 		activityRecords = records;
+		log = lg;
 	}
 
 	@Override
@@ -27,12 +32,18 @@ public class ActivityChecker implements Runnable
 							 - activityRecords.get(id).GetTimeLastActivity();
 					 difference = difference / (1000 * 60);
 					 if(difference > 5)
+					 {
+						 String type = "Sleep User Cleaner";
+						 String info = "Chat №" + id.toString() + " - remove"; 
+						 log.AddRecord(new Record(type, info));
 						 activityRecords.remove(id);
+					 }
 				 }
 			} catch (InterruptedException e) 
 			{
-				//TODO Вы используете лучшие практики по обработки исключений :)
-				e.printStackTrace();
+				String type = "Sleep User Cleaner";
+				String info = e.getMessage(); 
+				log.AddRecord(new Record(type, info));
 			}
 			
 		}

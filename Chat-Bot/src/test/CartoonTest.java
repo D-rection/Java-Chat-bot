@@ -14,7 +14,7 @@ class CartoonTest {
 		Cartoon cartoon = new Cartoon();
 		String answer = cartoon.getAnswerData(new InputData(a, null, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
-		assertTrue(Arrays.asList(Cartoon.cartoons).contains(arrAnswers[1]));
+		assertTrue(Arrays.asList(new Cartoon().cartoons).contains(arrAnswers[1]));
 	}
 
 }

@@ -19,7 +19,7 @@ class WhatWatchTest {
 			a.decreaseFriendliness();
 		WhatWatch whatwatch = new WhatWatch();
 		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
-		assertTrue(Arrays.asList(WhatWatch.angryAnswers).contains(answer));
+		assertTrue(Arrays.asList(new WhatWatch().angryAnswers).contains(answer));
 	}
 
 	@Test
@@ -28,7 +28,7 @@ class WhatWatchTest {
 		WhatWatch whatwatch = new WhatWatch();
 		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
-		assertTrue(Arrays.asList(WhatWatch.neutralAnswers).contains(arrAnswers[0]));
+		assertTrue(Arrays.asList(new WhatWatch().neutralAnswers).contains(arrAnswers[0]));
 	}
 
 	@Test
@@ -39,6 +39,6 @@ class WhatWatchTest {
 		WhatWatch whatwatch = new WhatWatch();
 		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
-		assertTrue(Arrays.asList(WhatWatch.neutralAnswers).contains(arrAnswers[0]));
+		assertTrue(Arrays.asList(new WhatWatch().neutralAnswers).contains(arrAnswers[0]));
 	}
 }

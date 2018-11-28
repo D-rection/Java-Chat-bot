@@ -14,6 +14,6 @@ class SeriesTest {
 		Series series = new Series();
 		String answer = series.getAnswerData(new InputData(a, null, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
-		assertTrue(Arrays.asList(Series.series).contains(arrAnswers[1]));
+		assertTrue(Arrays.asList(new Series().series).contains(arrAnswers[1]));
 	}
 }

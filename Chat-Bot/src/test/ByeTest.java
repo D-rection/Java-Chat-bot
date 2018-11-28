@@ -19,7 +19,7 @@ class ByeTest {
 			a.decreaseFriendliness();
 		Bye bye = new Bye();
 		String answer = bye.getAnswerData(new InputData(a, null)).getAnswer();
-		assertTrue(Arrays.asList(Bye.angryAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Bye().angryAnswers).contains(answer));
 	}
 
 	@Test
@@ -27,7 +27,7 @@ class ByeTest {
 		Attitude a = new Attitude();
 		Bye bye = new Bye();
 		String answer = bye.getAnswerData(new InputData(a, null)).getAnswer();
-		assertTrue(Arrays.asList(Bye.neutralAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Bye().neutralAnswers).contains(answer));
 	}
 
 	@Test
@@ -37,6 +37,6 @@ class ByeTest {
 			a.increasedFriendliness();
 		Bye bye = new Bye();
 		String answer = bye.getAnswerData(new InputData(a, null)).getAnswer();
-		assertTrue(Arrays.asList(Bye.cheerfulAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Bye().cheerfulAnswers).contains(answer));
 	}
 }

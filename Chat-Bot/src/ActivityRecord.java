@@ -4,10 +4,14 @@ import bot.ChatBot;
 
 public class ActivityRecord 
 {
-	//TODO У вас тут прямо сплошная инкапсуляция :)
 	private long TimeLastActivity = 0;
-	public ChatBot Bot = null;
+	private ChatBot Bot = new ChatBot();
 
+	public String GetAnswer(String sentence)
+	{
+		return Bot.sayInReturn(sentence);
+	}
+	
 	public long GetTimeLastActivity()
 	{
 		return TimeLastActivity;

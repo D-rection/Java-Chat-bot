@@ -1,6 +1,10 @@
 package answers;
 
 import bot.TopicConversation;
+
+import java.util.HashSet;
+import java.util.regex.Pattern;
+
 import bot.AnswerData;
 import bot.InputData;
 
@@ -14,5 +18,18 @@ public class WhatCan implements TopicConversation {
 		strb.append("И не забывайте, что вы можете просто поболтать со мной, ведь я очень люблю общаться с людьми^-^.");
 		String answer = strb.toString();
 		return new AnswerData(answer, false);
+	}
+	
+	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
+	{
+		{
+			add(Pattern.compile("что\\s.*можешь"));
+			add(Pattern.compile("что\\s.*умеешь"));
+		}
+	};
+
+	@Override
+	public HashSet<Pattern> getTriggers() {
+		return (HashSet<Pattern>) triggers.clone();
 	}
 }

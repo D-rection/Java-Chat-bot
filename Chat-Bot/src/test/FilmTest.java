@@ -14,7 +14,7 @@ class FilmTest {
 		Film film = new Film();
 		String answer = film.getAnswerData(new InputData(a, null, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
-		assertTrue(Arrays.asList(Film.films).contains(arrAnswers[1]));
+		assertTrue(Arrays.asList(new Film().films).contains(arrAnswers[1]));
 	}
 
 }

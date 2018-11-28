@@ -1,6 +1,8 @@
 package numbers;
 
 import bot.TopicConversation;
+
+import java.util.HashSet;
 import java.util.regex.Pattern;
 import bot.AnswerData;
 import bot.InputData;
@@ -43,5 +45,21 @@ public class PlayNumbers implements TopicConversation {
 		} else {
 			return new AnswerData("Это не верный ответ!!!Ты проиграл(", false);
 		}
+	}
+
+	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
+	{
+		{
+			add(Pattern.compile("поиграем\\s.*числа"));
+			add(Pattern.compile("сыграем\\s.*числа"));
+			add(Pattern.compile("отгадывать"));
+			add(Pattern.compile("загадывать"));
+		}
+	};
+	
+	@Override
+	public HashSet<Pattern> getTriggers() 
+	{
+		return (HashSet<Pattern>) triggers.clone();
 	}
 }

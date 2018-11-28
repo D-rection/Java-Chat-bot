@@ -20,7 +20,7 @@ class HelloTest {
 			a.decreaseFriendliness();
 		Hello hello = new Hello();
 		String answer = hello.getAnswerData(new InputData(a,null,null)).getAnswer();
-		assertTrue(Arrays.asList(Hello.angryAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Hello().angryAnswers).contains(answer));
 	}
 
 	@Test
@@ -28,7 +28,7 @@ class HelloTest {
 		Attitude a = new Attitude();
 		Hello hello = new Hello();
 		String answer = hello.getAnswerData(new InputData(a,null,null)).getAnswer();
-		assertTrue(Arrays.asList(Hello.neutralAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Hello().neutralAnswers).contains(answer));
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class HelloTest {
 			a.increasedFriendliness();
 		Hello hello = new Hello();
 		String answer = hello.getAnswerData(new InputData(a,null,null)).getAnswer();
-		assertTrue(Arrays.asList(Hello.cheerfulAnswers).contains(answer));
+		assertTrue(Arrays.asList(new Hello().cheerfulAnswers).contains(answer));
 	}
 
 }

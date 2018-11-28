@@ -38,21 +38,21 @@ class TranslatorTest
 		TranslateService translator = new TranslateService();
 		AnswerData data = translator.getAnswerData(new InputData(new Attitude(), "some text"));
 		data = translator.getAnswerData(new InputData(new Attitude(), "английский"));
-		String answer = "boy" + "\n Желаете ли перевести что-нибудь ещё?";
+		String answer = "boy" + "\nЖелаете ли перевести что-нибудь ещё?";
 		String realAnswer = translator.getAnswerData(new InputData(new Attitude(), "мальчик")).getAnswer();
 		assertEquals(answer, realAnswer);
 		
 		TranslateService translator1 = new TranslateService();
 		AnswerData data1 = translator1.getAnswerData(new InputData(new Attitude(), "some text"));
 		data1 = translator1.getAnswerData(new InputData(new Attitude(), "английский"));
-		String answer1 = "girl" + "\n Желаете ли перевести что-нибудь ещё?";
+		String answer1 = "girl" + "\nЖелаете ли перевести что-нибудь ещё?";
 		String realAnswer1 = translator1.getAnswerData(new InputData(new Attitude(), "девочка")).getAnswer();
 		assertEquals(answer1, realAnswer1);
 		
 		TranslateService translator2 = new TranslateService();
 		AnswerData data2 = translator2.getAnswerData(new InputData(new Attitude(), "some text"));
 		data2 = translator2.getAnswerData(new InputData(new Attitude(), "русский"));
-		String answer2 = "как" + "\n Желаете ли перевести что-нибудь ещё?";
+		String answer2 = "как" + "\nЖелаете ли перевести что-нибудь ещё?";
 		String realAnswer2 = translator2.getAnswerData(new InputData(new Attitude(), "how")).getAnswer();
 		assertEquals(answer2, realAnswer2);
 	}

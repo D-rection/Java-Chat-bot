@@ -2,6 +2,7 @@ package Translator;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.regex.Pattern;
 
 import bot.AnswerData;
@@ -14,6 +15,15 @@ public class TranslateService implements TopicConversation
 {
 	private String targetLanguage = null;
 	private TranslateSteps currentStep = TranslateSteps.Start;
+	
+	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
+	{
+		{
+			add(Pattern.compile("переведи"));
+			add(Pattern.compile("можешь\\s.*перевести"));
+			add(Pattern.compile("переводчик"));
+		}
+	};
 	
 	private HashMap<String, String> languageMap = new HashMap<String, String>()
 	{
@@ -166,6 +176,12 @@ public class TranslateService implements TopicConversation
 			reboot();
 		}
 		return result;
+	}
+
+	@Override
+	public HashSet<Pattern> getTriggers() 
+	{
+		return (HashSet<Pattern>) triggers.clone();
 	}
 
 }
