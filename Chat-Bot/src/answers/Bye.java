@@ -1,10 +1,8 @@
 package answers;
 
 import bot.TopicConversation;
-
 import java.util.HashSet;
 import java.util.regex.Pattern;
-
 import bot.AnswerData;
 import bot.InputData;
 

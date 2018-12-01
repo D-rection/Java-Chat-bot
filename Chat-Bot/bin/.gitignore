@@ -1,12 +1,4 @@
-/files/
-/Translator/
-/answers/
 /bot/
+/answers/
 /numbers/
-/test/
 /towns/
-/ActivityChecker.class
-/ActivityRecord.class
-/ChatBotMax.class
-/TelegramService.class
-/Logger/

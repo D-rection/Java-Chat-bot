@@ -30,6 +30,7 @@ public class MeaninglessAnswers implements TopicConversation{
 		String say = (msg.trim().endsWith("?"))
 				? ELUSIVE_ANSWERS[random.nextInt(ELUSIVE_ANSWERS.length)]
 				: COMMON_PHRASES[random.nextInt(COMMON_PHRASES.length)];
+		data.currentAttitude.decreaseFriendliness();
 		return new AnswerData(say, false);
 	}
 	

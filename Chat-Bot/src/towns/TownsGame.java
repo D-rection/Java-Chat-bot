@@ -2,14 +2,14 @@ package towns;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 import bot.TopicConversation;
 import bot.AnswerData;
 import bot.InputData;
 
 public class TownsGame implements TopicConversation {
+	String[] angryAnswers = {"Я не хочу с тобой играть...", "Поиграй с кем-нибудь другим", "Ты обидел меня(" };
+	
 	private HashSet<String> patternToAnalysis = new HashSet<String>() 
 	{
 		{
@@ -31,10 +31,14 @@ public class TownsGame implements TopicConversation {
 	private HashSet<Character> invalidCharacter = new HashSet<>(Arrays.asList('ъ','ь','ы'));
 	
 	public AnswerData getAnswerData(InputData input) 
-	{
+	{		
 		if (townsData.isEndOfGame())
 			return endOfGame(input);
 		if (townsData.isStart()) {
+			if (input.currentAttitude.isAngry()){
+				int random = 0 + (int) (Math.random() * angryAnswers.length);
+				return new AnswerData(angryAnswers[random], false);
+			}
 			reboot();
 			townsData.firstCityWas();
 			return start(input);
@@ -63,17 +67,20 @@ public class TownsGame implements TopicConversation {
 					+ "\" и последняя буква \"" + townsData.getLastCity()
 					+ "\" не совпадают. Вы проиграли.";
 			reboot();
+			input.currentAttitude.decreaseFriendliness();
 			return new AnswerData(answer, false);
 		}
 		if (checkInUsed(input.textMessage)) {
 			String answer = "Этот город уже называли ранее." + "Вы проиграли.";
 			reboot();
+			input.currentAttitude.increasedFriendliness();
 			return new AnswerData(answer, false);
 		}
 		if (!checkInUnused(input.textMessage)) {
 			String answer = "Этого города нет в моей базе данных. "
 					+ "Скорее всего это не город и Вы пытаетесь меня обмануть. " + "Вы проиграли.";
 			reboot();
+			input.currentAttitude.decreaseFriendliness();
 			return new AnswerData(answer, false);
 		}
 		townsMemory.useTown(getTrueNameCity(input.textMessage));
@@ -83,6 +90,7 @@ public class TownsGame implements TopicConversation {
 			return new AnswerData(answer, true);
 		}
 		reboot();
+		input.currentAttitude.increasedFriendliness();
 		return new AnswerData("Я не смог подобрать нужного названия(" + "Вы выиграли", false);
 	}
 
@@ -136,6 +144,7 @@ public class TownsGame implements TopicConversation {
 		userAnswer = userAnswer.replaceAll("[^а-я]", "");
 		if (userAnswer.equals("да")) {
 			reboot();
+			input.currentAttitude.increasedFriendliness();
 			return new AnswerData("Спасибо, было приятно поиграть. Приходи ещё!", false);
 		}
 		if (userAnswer.equals("нет")) {

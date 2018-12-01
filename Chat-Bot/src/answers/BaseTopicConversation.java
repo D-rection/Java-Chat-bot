@@ -4,21 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import bot.AnswerData;
 import bot.InputData;
-import bot.Mood;
-import bot.TopicConversation;
-
-import bot.AnswerData;
-import bot.InputData;
-import bot.Mood;
 import bot.TopicConversation;
 
 public abstract class BaseTopicConversation implements TopicConversation {
 	public AnswerData getAnswerData(InputData input, String[] angryAnswers, String[] neutralAnswers,
 			String[] cheerfulAnswers) {
-		if (input.currentAttitude.getFriendliness() == Mood.Angry) {
+		if (input.currentAttitude.isAngry()) {
 			int random = 0 + (int) (Math.random() * angryAnswers.length);
 			return new AnswerData(angryAnswers[random], false);
-		} else if (input.currentAttitude.getFriendliness() == Mood.Neutral) {
+		} else if (input.currentAttitude.isCheerful()) {
 			int random = 0 + (int) (Math.random() * neutralAnswers.length);
 			return new AnswerData(neutralAnswers[random], false);
 		} else {
@@ -30,7 +24,7 @@ public abstract class BaseTopicConversation implements TopicConversation {
 	public AnswerData getAnswerDataWithDate(InputData input, String information) {
 		String[] angryAnswers = { "У тебя что телефона нет?", "В углу экрана посмотри" };
 		Date date = new Date();
-		if (input.currentAttitude.getFriendliness() == Mood.Angry) {
+		if (input.currentAttitude.isAngry()) {
 			int random = 0 + (int) (Math.random() * angryAnswers.length);
 			return new AnswerData(angryAnswers[random], false);
 		} else {
@@ -51,7 +45,7 @@ public abstract class BaseTopicConversation implements TopicConversation {
 		String film = films[random];
 		AnswerData answer = getAnswerData(input, angryAnswers, neutralAnswers, cheerfulAnswers);
 
-		if (input.currentAttitude.getFriendliness() == Mood.Angry) {
+		if (input.currentAttitude.isAngry()) {
 			return answer;
 		} else {
 			return new AnswerData(String.format("%s\"%s\".", answer.getAnswer(), film), answer.saveTheme());

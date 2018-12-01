@@ -20,5 +20,17 @@ public class Attitude {
 	public Mood getFriendliness() {
 		return friendliness;
 	}
+	
+	public boolean isAngry() {
+		return (friendliness == Mood.VeryAngry || friendliness == Mood.Angry || friendliness == Mood.SomeAngry);	
+	}
+	
+	public boolean isNeutral() {
+		return (friendliness == Mood.NeutralAngry || friendliness == Mood.Neutral || friendliness == Mood.NeutralCheerful);	
+	}
+	
+	public boolean isCheerful() {
+		return (friendliness == Mood.SomeCheerful || friendliness == Mood.Cheerful || friendliness == Mood.VeryCheerful);	
+	}
 
 }
