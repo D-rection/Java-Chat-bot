@@ -1,6 +1,6 @@
 package numbers;
 
-public class UnknowNumber {
+public class UnknownNumber {
 	private int botNumber;
 	private int currentMinNumber;
 	private int currentMaxNumber;

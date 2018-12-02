@@ -3,7 +3,8 @@ package numbers;
 import java.util.regex.Pattern;
 
 public class MakeNumber {
-	public String getAnswer(String mess, UnknowNumber unknowNumber) {
+	public String getAnswer(String mess, UnknownNumber unknowNumber) {
+		//TODO А почему не скомпилировать заранее?
 		Pattern pattern1 = Pattern.compile("загадывать");
 		Pattern pattern2 = Pattern.compile("угадал");
 		Pattern pattern3 = Pattern.compile("меньше");

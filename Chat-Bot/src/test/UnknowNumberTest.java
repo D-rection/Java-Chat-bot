@@ -2,13 +2,13 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import numbers.UnknowNumber;
+import numbers.UnknownNumber;
 
 class UnknowNumberTest {
 
 	@Test
 	void setBotNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 
 		try {
 			number.setBotNumber(-1);
@@ -27,7 +27,7 @@ class UnknowNumberTest {
 
 	@Test
 	void getBotNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 		try {
 			number.setBotNumber(10);
 			assertTrue(number.getBotNumber() == 10);
@@ -38,7 +38,7 @@ class UnknowNumberTest {
 
 	@Test
 	void setMinNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 
 		try {
 			number.setMinNumber(-2);
@@ -57,7 +57,7 @@ class UnknowNumberTest {
 
 	@Test
 	void getMinNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 		try {
 			number.setMinNumber(20);
 			assertTrue(number.getMinNumber() == 20);
@@ -68,7 +68,7 @@ class UnknowNumberTest {
 
 	@Test
 	void setMaxNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 
 		try {
 			number.setMaxNumber(-3);
@@ -87,7 +87,7 @@ class UnknowNumberTest {
 
 	@Test
 	void getMaxNumberTest() throws NumberFormatException {
-		UnknowNumber number = new UnknowNumber();
+		UnknownNumber number = new UnknownNumber();
 		try {
 			number.setMaxNumber(30);
 			assertTrue(number.getMaxNumber() == 30);

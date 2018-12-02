@@ -7,11 +7,13 @@ import bot.AnswerData;
 import bot.InputData;
 
 public class PlayNumbers implements TopicConversation {
+	//TODO А где мотфиикаторы доступа?
 	String[] angryAnswers = {"Я не хочу с тобой играть...", "Поиграй с кем-нибудь другим", "Ты обидел меня(" };
 
-	private UnknowNumber unknowNumber;
+	private UnknownNumber unknowNumber;
 
-	public AnswerData getAnswerData(InputData input) {		
+	public AnswerData getAnswerData(InputData input) {
+		//TODO А почему не скомпилировать заранее?
 		Pattern pattern1 = Pattern.compile("сыграем|поиграем");
 		Pattern pattern2 = Pattern.compile("отгадывать");
 		Pattern pattern3 = Pattern.compile("\\d+");
@@ -27,7 +29,7 @@ public class PlayNumbers implements TopicConversation {
 			return new AnswerData("Хорошо давай сыграем. Ты хочешь отгадывать или загадывать?", true);
 		} else if (pattern2.matcher(mess).find() || pattern3.matcher(mess).find()) {
 			if (pattern2.matcher(mess).find()) {
-				unknowNumber = new UnknowNumber();
+				unknowNumber = new UnknownNumber();
 				unknowNumber.setBotNumber((int) Math.floor(Math.random() * 100));
 			}
 			String answer = new GuessNumber().getAnswer(mess, unknowNumber);
@@ -39,7 +41,7 @@ public class PlayNumbers implements TopicConversation {
 			}
 		} else if (pattern4.matcher(mess).find() || pattern5.matcher(mess).find() || pattern6.matcher(mess).find()) {
 			if (pattern4.matcher(mess).find()) {
-				unknowNumber = new UnknowNumber();
+				unknowNumber = new UnknownNumber();
 			}
 			String answer = new MakeNumber().getAnswer(mess, unknowNumber);
 			if (mess == "угадал") {

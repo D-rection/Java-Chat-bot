@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class GuessNumber {
 
-	public String getAnswer(String mess, UnknowNumber unknowNumber) {
+	public String getAnswer(String mess, UnknownNumber unknowNumber) {
 
 		Pattern pattern1 = Pattern.compile("отгадывать");
 

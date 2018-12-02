@@ -22,6 +22,7 @@ public class WriterLog implements Runnable
 	{
 		while(true)
 		{
+			//TODO А зачем два вложенный while?!
 			while(queueRecords.peek() != null)
 			{
 				Record rec = null;
@@ -30,9 +31,9 @@ public class WriterLog implements Runnable
 					rec = queueRecords.take();
 				} catch (InterruptedException e) 
 				{
-
+					//TODO Из-за того, что вы таким способ обрабатывается исключение, то следующее обращение разлетится с NullPointer
 				}
-				
+
 				try(FileWriter writer = new FileWriter(logFilePath, true))
 				{
 					writer.write(rec.ToStringOnRecord());

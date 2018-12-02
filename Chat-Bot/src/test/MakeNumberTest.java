@@ -3,26 +3,26 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import numbers.MakeNumber;
-import numbers.UnknowNumber;
+import numbers.UnknownNumber;
 
 class MakeNumberTest {
 
 	@Test
 	void getAnswerStartGameTest() {
-		UnknowNumber unknowNumber = new UnknowNumber();
+		UnknownNumber unknowNumber = new UnknownNumber();
 		assertEquals(new MakeNumber().getAnswer("загадывать", unknowNumber),
 				"Окей.Загадай число от 0 до 100:) Моя задача его отгадать))) Только давай мне подсказки(меньше/больше):D Когда угадаю напиши:'угадал'))) Ты готов?");
 	}
 
 	@Test
 	void getAnswerFinishGameTest() {
-		UnknowNumber unknowNumber = new UnknowNumber();
+		UnknownNumber unknowNumber = new UnknownNumber();
 		assertEquals(new MakeNumber().getAnswer("угадал", unknowNumber), "Урааа!!!Было приятно с тобой поиграть)))");
 	}
 
 	@Test
 	void getAnswerLowerNumberTest() {
-		UnknowNumber unknowNumber = new UnknowNumber();
+		UnknownNumber unknowNumber = new UnknownNumber();
 		MakeNumber game = new MakeNumber();
 		game.getAnswer("загадывать", unknowNumber);
 		assertEquals(game.getAnswer("да", unknowNumber), "50?");
@@ -31,7 +31,7 @@ class MakeNumberTest {
 
 	@Test
 	void getAnswerGreaterNumberTest() {
-		UnknowNumber unknowNumber = new UnknowNumber();
+		UnknownNumber unknowNumber = new UnknownNumber();
 		MakeNumber game = new MakeNumber();
 		game.getAnswer("загадывать", unknowNumber);
 		assertEquals(game.getAnswer("да", unknowNumber), "50?");

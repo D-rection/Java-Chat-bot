@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static junit.framework.TestCase.assertTrue;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import answers.WhatAreYouDoing;
 import bot.Attitude;

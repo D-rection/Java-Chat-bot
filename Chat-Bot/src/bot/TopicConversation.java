@@ -7,7 +7,7 @@ public interface TopicConversation {
 	AnswerData getAnswerData(InputData data);	
 	HashSet<Pattern> getTriggers();
 	
-	public default boolean isThisSuitableTrigger(String message, HashSet<Pattern> triggers)
+	default boolean isThisSuitableTrigger(String message, HashSet<Pattern> triggers)
 	{
 		boolean result = false;
 		for (Pattern key: triggers)
