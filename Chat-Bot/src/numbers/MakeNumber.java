@@ -13,22 +13,22 @@ public class MakeNumber {
 		}
 	};
 
-	public String getAnswer(String mess, UnknownNumber unknowNumber) {
+	public String getAnswer(String mess, UnknownNumber unknownNumber) {
 		if (patterns.get("play").matcher(mess).find()) {
-			unknowNumber.setMinNumber(0);
-			unknowNumber.setMaxNumber(100);
+			unknownNumber.setMinNumber(0);
+			unknownNumber.setMaxNumber(100);
 			return "Окей.Загадай число от 0 до 100:) Моя задача его отгадать))) Только давай мне подсказки(меньше/больше):D Когда угадаю напиши:'угадал'))) Ты готов?";
 		} else if (patterns.get("finish").matcher(mess).find()) {
 			return "Урааа!!!Было приятно с тобой поиграть)))";
 		} else {
 			if (patterns.get("<").matcher(mess).find()) {
-				unknowNumber.setMaxNumber(unknowNumber.getBotNumber());
+				unknownNumber.setMaxNumber(unknownNumber.getBotNumber());
 			} else if (patterns.get(">").matcher(mess).find()) {
-				unknowNumber.setMinNumber(unknowNumber.getBotNumber());
+				unknownNumber.setMinNumber(unknownNumber.getBotNumber());
 			}
-			unknowNumber.setBotNumber(
-					unknowNumber.getMinNumber() + (unknowNumber.getMaxNumber() - unknowNumber.getMinNumber()) / 2);
-			return unknowNumber.getBotNumber() + "?";
+			unknownNumber.setBotNumber(
+					unknownNumber.getMinNumber() + (unknownNumber.getMaxNumber() - unknownNumber.getMinNumber()) / 2);
+			return unknownNumber.getBotNumber() + "?";
 		}
 	}
 

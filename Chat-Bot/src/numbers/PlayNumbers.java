@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class PlayNumbers implements TopicConversation {
 	private String[] angryAnswers = { "Я не хочу с тобой играть...", "Поиграй с кем-нибудь другим", "Ты обидел меня(" };
 
-	private UnknownNumber unknowNumber;
+	private UnknownNumber unknownNumber;
 
 	private HashMap<String, Pattern> patterns = new HashMap<String, Pattern>() {
 		{
@@ -32,10 +32,10 @@ public class PlayNumbers implements TopicConversation {
 			return new AnswerData("Хорошо давай сыграем. Ты хочешь отгадывать или загадывать?", true);
 		} else if (patterns.get("guess").matcher(mess).find() || patterns.get("numbers").matcher(mess).find()) {
 			if (patterns.get("guess").matcher(mess).find()) {
-				unknowNumber = new UnknownNumber();
-				unknowNumber.setBotNumber((int) Math.floor(Math.random() * 100));
+				unknownNumber = new UnknownNumber();
+				unknownNumber.setBotNumber((int) Math.floor(Math.random() * 100));
 			}
-			String answer = new GuessNumber().getAnswer(mess, unknowNumber);
+			String answer = new GuessNumber().getAnswer(mess, unknownNumber);
 			if (answer == "Ты угадал!") {
 				input.currentAttitude.increasedFriendliness();
 				return new AnswerData(answer, false);
@@ -44,9 +44,9 @@ public class PlayNumbers implements TopicConversation {
 			}
 		} else if (patterns.get("make").matcher(mess).find() || patterns.get("answers").matcher(mess).find()) {
 			if (patterns.get("make").matcher(mess).find()) {
-				unknowNumber = new UnknownNumber();
+				unknownNumber = new UnknownNumber();
 			}
-			String answer = new MakeNumber().getAnswer(mess, unknowNumber);
+			String answer = new MakeNumber().getAnswer(mess, unknownNumber);
 			if (mess == "угадал") {
 				input.currentAttitude.increasedFriendliness();
 				return new AnswerData(answer, false);

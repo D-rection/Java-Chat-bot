@@ -31,7 +31,7 @@ class PlayNumbersTest {
 
 	@Test
 	void getAnswerDataNotGameDataTest() {
-		InputData input = new InputData(new Attitude(), "левые данные");
+		InputData input = new InputData(new Attitude(), "пхрпхр");
 		assertEquals(new PlayNumbers().getAnswerData(input).getAnswer(), "Это не верный ответ!!!Ты проиграл(");
 	}
 
