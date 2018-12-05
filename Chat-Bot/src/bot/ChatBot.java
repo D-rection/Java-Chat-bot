@@ -27,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChatBot {
-	private Random random = new Random(); // Для рандомных ответов
+	private Random random = new Random();
 	private Attitude attitude = new Attitude();
 	private TopicConversation currentConversation = null;
 	private InputData input = new InputData(null, null);
