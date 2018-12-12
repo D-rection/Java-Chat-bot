@@ -14,16 +14,16 @@ public class PlayNumbers implements TopicConversation {
 
 	private HashMap<String, Pattern> patterns = new HashMap<String, Pattern>() {
 		{
-			put("play", Pattern.compile("сыграем|поиграем"));
-			put("guess", Pattern.compile("отгадывать"));
+			put("play", Pattern.compile("(?iu:сыграем|поиграем)"));
+			put("guess", Pattern.compile("(?iu:отгадывать)"));
 			put("numbers", Pattern.compile("\\d+"));
-			put("make", Pattern.compile("загадывать"));
-			put("answers", Pattern.compile("готов|да|меньше|больше"));
+			put("make", Pattern.compile("(?iu:загадывать)"));
+			put("answers", Pattern.compile("(?iu:готов|да|меньше|больше)"));
 		}
 	};
 
 	public AnswerData getAnswerData(InputData input) {
-		String mess = input.textMessage.toLowerCase();
+		String mess = input.textMessage;
 		if (patterns.get("play").matcher(mess).find()) {
 			if (input.currentAttitude.isAngry()) {
 				int random = 0 + (int) (Math.random() * angryAnswers.length);
@@ -61,10 +61,10 @@ public class PlayNumbers implements TopicConversation {
 
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() {
 		{
-			add(Pattern.compile("поиграем\\s.*числа"));
-			add(Pattern.compile("сыграем\\s.*числа"));
-			add(Pattern.compile("отгадывать"));
-			add(Pattern.compile("загадывать"));
+			add(Pattern.compile("(?iu:поиграем\\s.*числа)"));
+			add(Pattern.compile("(?iu:сыграем\\s.*числа)"));
+			add(Pattern.compile("(?iu:отгадывать)"));
+			add(Pattern.compile("(?iu:загадывать)"));
 		}
 	};
 

@@ -20,8 +20,8 @@ public class WhatWatch extends BaseTopicConversation implements TopicConversatio
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("что\\s.*посмотреть"));
-			add(Pattern.compile("что\\s.глянуть"));
+			add(Pattern.compile("(?iu:что\\s.*посмотреть)"));
+			add(Pattern.compile("(?iu:что\\s.глянуть)"));
 		}
 	};
 	

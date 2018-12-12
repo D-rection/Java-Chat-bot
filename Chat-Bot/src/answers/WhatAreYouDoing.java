@@ -24,12 +24,12 @@ public class WhatAreYouDoing extends BaseTopicConversation implements TopicConve
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("зачем\\s.*тут"));
-			add(Pattern.compile("зачем\\s.*здесь"));
-			add(Pattern.compile("что\\s.*делаешь"));
-			add(Pattern.compile("чем\\s.*занимаешься"));
-			add(Pattern.compile("что\\s.*творишь"));
-			add(Pattern.compile("чем\\s.*занят"));
+			add(Pattern.compile("(?iu:зачем\\s.*тут)"));
+			add(Pattern.compile("(?iu:зачем\\s.*здесь)"));
+			add(Pattern.compile("(?iu:что\\s.*делаешь)"));
+			add(Pattern.compile("(?iu:чем\\s.*занимаешься)"));
+			add(Pattern.compile("(?iu:что\\s.*творишь)"));
+			add(Pattern.compile("(?iu:чем\\s.*занят)"));
 		}
 	};
 	

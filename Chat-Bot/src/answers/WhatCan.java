@@ -13,6 +13,7 @@ public class WhatCan implements TopicConversation {
 		StringBuilder strb = new StringBuilder();
 		strb.append("Пока я мало чего умею, но скоро этот список расширится.");
 		strb.append("Cейчас я могу подсказать вам день и время.");
+		strb.append("Помогу перевести слово с русского на английский и с английского на русский:)");
 		strb.append("Я хорошо разбираюсь в кино и могу посоветовать, что вам посмотреть:)");
 		strb.append("Ещё мы можем поиграть в \"Числа\" или \"Города\".");
 		strb.append("И не забывайте, что вы можете просто поболтать со мной, ведь я очень люблю общаться с людьми^-^.");
@@ -23,8 +24,8 @@ public class WhatCan implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("что\\s.*можешь"));
-			add(Pattern.compile("что\\s.*умеешь"));
+			add(Pattern.compile("(?iu:что\\s.*можешь)"));
+			add(Pattern.compile("(?iu:что\\s.*умеешь)"));
 		}
 	};
 

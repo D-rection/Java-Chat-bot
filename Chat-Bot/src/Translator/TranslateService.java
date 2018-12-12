@@ -19,9 +19,9 @@ public class TranslateService implements TopicConversation
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("переведи"));
-			add(Pattern.compile("можешь\\s.*перевести"));
-			add(Pattern.compile("переводчик"));
+			add(Pattern.compile("(?iu:переведи)"));
+			add(Pattern.compile("(?iu:можешь\\s.*перевести)"));
+			add(Pattern.compile("(?iu:переводчик)"));
 		}
 	};
 	

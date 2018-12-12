@@ -20,11 +20,10 @@ public class Series extends BaseTopicConversation implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("сериал"));
-			add(Pattern.compile("сериальчик"));
-			add(Pattern.compile("какой\\s.*сериал"));
-			add(Pattern.compile("подскажи\\s.*сериал"));
-			add(Pattern.compile("посоветуй\\s.*сериал"));
+			add(Pattern.compile("(?iu:сериал|сериальчик)"));
+			add(Pattern.compile("(?iu:какой\\s.*сериал)"));
+			add(Pattern.compile("(?iu:подскажи\\s.*сериал)"));
+			add(Pattern.compile("(?iu:посоветуй\\s.*сериал)"));
 		}
 	};
 
