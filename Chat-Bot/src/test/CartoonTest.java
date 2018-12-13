@@ -12,7 +12,7 @@ class CartoonTest {
 	void cartoonTest() {
 		Attitude a = new Attitude();
 		Cartoon cartoon = new Cartoon();
-		String answer = cartoon.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = cartoon.getAnswerData(new InputData(a, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
 		assertTrue(Arrays.asList(new Cartoon().cartoons).contains(arrAnswers[1]));
 	}

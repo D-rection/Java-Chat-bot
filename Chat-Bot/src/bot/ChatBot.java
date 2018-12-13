@@ -85,7 +85,10 @@ public class ChatBot {
 			updateInputData(data.getAnswer());
 			return data.getAnswer();
 		}
-		String message = String.join(" ", msg.split("[ {,|.}?]+"));
+		String message = String.join(" ", msg.toLowerCase().split("[ {,|.}?]+"));
+		// TODO Вместо toLowerCase можно сделать регулярные выражения нечувствиительными
+		// к регистру
+		// Объясните, почему это плохо. Мне не понятно
 		for (TopicConversation topic : topics) {
 			if (topic.isThisSuitableTrigger(message, topic.getTriggers())) {
 				AnswerData data = topic.getAnswerData(input);

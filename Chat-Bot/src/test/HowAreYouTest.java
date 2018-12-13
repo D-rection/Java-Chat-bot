@@ -18,7 +18,7 @@ class HowAreYouTest {
 		for (int i = 0; i < 5; i++)
 			a.decreaseFriendliness();
 		HowAreYou howAreYou = new HowAreYou();
-		String answer = howAreYou.getAnswerData(new InputData(a,null,null)).getAnswer();
+		String answer = howAreYou.getAnswerData(new InputData(a,null)).getAnswer();
 		assertTrue(Arrays.asList(new HowAreYou().angryAnswers).contains(answer));
 	}
 
@@ -26,7 +26,7 @@ class HowAreYouTest {
 	void attitudeNeutralTest() {
 		Attitude a = new Attitude();
 		HowAreYou howAreYou = new HowAreYou();
-		String answer = howAreYou.getAnswerData(new InputData(a,null,null)).getAnswer();
+		String answer = howAreYou.getAnswerData(new InputData(a,null)).getAnswer();
 		assertTrue(Arrays.asList(new HowAreYou().neutralAnswers).contains(answer));
 	}
 
@@ -36,7 +36,7 @@ class HowAreYouTest {
 		for (int i = 0; i < 5; i++)
 			a.increasedFriendliness();
 		HowAreYou howAreYou = new HowAreYou();
-		String answer = howAreYou.getAnswerData(new InputData(a,null,null)).getAnswer();
+		String answer = howAreYou.getAnswerData(new InputData(a,null)).getAnswer();
 		assertTrue(Arrays.asList(new HowAreYou().cheerfulAnswers).contains(answer));
 	}
 

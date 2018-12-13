@@ -15,8 +15,11 @@ public class Bye extends BaseTopicConversation implements TopicConversation {
 	
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() {
 		{
-			add(Pattern.compile("(?iu:прощай|пока|покеда|увидимся)"));
-			add(Pattern.compile("(?iu:до\\s.*свидания)"));
+			add(Pattern.compile("прощай"));
+			add(Pattern.compile("пока"));
+			add(Pattern.compile("покеда"));
+			add(Pattern.compile("увидимся"));
+			add(Pattern.compile("до\\s.*свидания"));
 		}
 	};
 

@@ -18,12 +18,14 @@ class AttitudeTest {
 	@Test
 	void testGetStringFriendliness() {
 		Attitude a = new Attitude();
-		for (int i = 5; i > 3; i--) {
-			assertTrue(a.getFriendliness() == Mood.Neutral);
+		for (int i = 0; i < 2; i++) {
+			boolean res = a.getFriendliness().isNeutral();
+			assertTrue(res);
 			a.decreaseFriendliness();
 		}
 		for (int i = 3; i > 0; i--) {
-			assertTrue(a.getFriendliness() == Mood.Angry);
+			boolean res = a.getFriendliness().isAngry();
+			assertTrue(res);
 			a.decreaseFriendliness();
 		}
 	}

@@ -12,7 +12,7 @@ public abstract class BaseTopicConversation implements TopicConversation {
 		if (input.currentAttitude.isAngry()) {
 			int random = 0 + (int) (Math.random() * angryAnswers.length);
 			return new AnswerData(angryAnswers[random], false);
-		} else if (input.currentAttitude.isCheerful()) {
+		} else if (input.currentAttitude.isNeutral()) {
 			int random = 0 + (int) (Math.random() * neutralAnswers.length);
 			return new AnswerData(neutralAnswers[random], false);
 		} else {

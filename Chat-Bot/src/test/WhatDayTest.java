@@ -13,7 +13,7 @@ class WhatDayTest {
 	void attitudeNeutralTest() {
 		Attitude a = new Attitude();
 		WhatDay whatday = new WhatDay();
-		String answer = whatday.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = whatday.getAnswerData(new InputData(a, null)).getAnswer();
 		Date date = new Date();
 		assertTrue(answer.equals(new SimpleDateFormat("'Сегодня' EE dd.MM.yyyy").format(date)));
 	}
@@ -24,7 +24,7 @@ class WhatDayTest {
 		for (int i = 0; i < 5; i++)
 			a.increasedFriendliness();
 		WhatDay whatday = new WhatDay();
-		String answer = whatday.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = whatday.getAnswerData(new InputData(a, null)).getAnswer();
 		Date date = new Date();
 		assertTrue(answer.equals(new SimpleDateFormat("'Сегодня' EE dd.MM.yyyy").format(date)));
 	}

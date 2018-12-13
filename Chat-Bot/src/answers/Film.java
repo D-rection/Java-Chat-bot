@@ -24,10 +24,11 @@ public class Film extends BaseTopicConversation implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("(?iu:фильм|фильмец)"));
-			add(Pattern.compile("(?iu:какой\\s.*фильм)"));
-			add(Pattern.compile("(?iu:подскажи\\s.*фильм)"));
-			add(Pattern.compile("(?iu:посоветуй\\s.*фильм)"));
+			add(Pattern.compile("фильм"));
+			add(Pattern.compile("фильмец"));
+			add(Pattern.compile("какой\\s.*фильм"));
+			add(Pattern.compile("подскажи\\s.*фильм"));
+			add(Pattern.compile("посоветуй\\s.*фильм"));
 		}
 	};
 	

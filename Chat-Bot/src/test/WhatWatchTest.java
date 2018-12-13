@@ -18,7 +18,7 @@ class WhatWatchTest {
 		for (int i = 0; i < 5; i++)
 			a.decreaseFriendliness();
 		WhatWatch whatwatch = new WhatWatch();
-		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = whatwatch.getAnswerData(new InputData(a, null)).getAnswer();
 		assertTrue(Arrays.asList(new WhatWatch().angryAnswers).contains(answer));
 	}
 
@@ -26,7 +26,7 @@ class WhatWatchTest {
 	void attitudeNeutralTest() {
 		Attitude a = new Attitude();
 		WhatWatch whatwatch = new WhatWatch();
-		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = whatwatch.getAnswerData(new InputData(a, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
 		assertTrue(Arrays.asList(new WhatWatch().neutralAnswers).contains(arrAnswers[0]));
 	}
@@ -37,7 +37,7 @@ class WhatWatchTest {
 		for (int i = 0; i < 5; i++)
 			a.increasedFriendliness();
 		WhatWatch whatwatch = new WhatWatch();
-		String answer = whatwatch.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = whatwatch.getAnswerData(new InputData(a, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
 		assertTrue(Arrays.asList(new WhatWatch().neutralAnswers).contains(arrAnswers[0]));
 	}

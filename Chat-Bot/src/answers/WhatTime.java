@@ -16,8 +16,8 @@ public class WhatTime extends BaseTopicConversation implements TopicConversation
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("(?iu:который\\s.*час)"));
-			add(Pattern.compile("(?iu:сколько\\s.*время)"));
+			add(Pattern.compile("который\\s.*час"));
+			add(Pattern.compile("сколько\\s.*время"));
 		}
 	};
 

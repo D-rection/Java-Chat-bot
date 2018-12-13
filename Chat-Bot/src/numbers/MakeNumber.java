@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class MakeNumber {
-	private HashMap<String, Pattern> patterns = new HashMap<String, Pattern>() {
+	public HashMap<String, Pattern> patterns = new HashMap<String, Pattern>() {
 		{
-			put("play", Pattern.compile("(?iu:загадывать)"));
-			put("finish", Pattern.compile("(?iu:угадал)"));
-			put("<", Pattern.compile("(?iu:меньше)"));
-			put(">", Pattern.compile("(?iu:больше)"));
+			put("play", Pattern.compile("загадывать"));
+			put("finish", Pattern.compile("угадал"));
+			put("<", Pattern.compile("меньше"));
+			put(">", Pattern.compile("больше"));
 		}
 	};
 

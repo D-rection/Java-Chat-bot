@@ -22,7 +22,7 @@ public class TownsGame implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("(?iu:города)"));
+			add(Pattern.compile("города"));
 		}
 	};
 

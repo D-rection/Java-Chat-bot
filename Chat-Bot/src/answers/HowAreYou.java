@@ -23,8 +23,8 @@ public class HowAreYou extends BaseTopicConversation implements TopicConversatio
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("(?iu:как\\s.*дела)"));
-			add(Pattern.compile("(?iu:как\\s.*жизнь)"));
+			add(Pattern.compile("как\\s.*дела"));
+			add(Pattern.compile("как\\s.*жизнь"));
 		}
 	};
 	

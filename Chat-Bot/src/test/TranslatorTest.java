@@ -61,11 +61,12 @@ class TranslatorTest
 	void tesExitAnswer() 
 	{
 		TranslateService translator = new TranslateService();
-		String answer = "Обращайтесь если что, всегда рада помочь";
+		String answer = "Обращайтесь, если что, всегда рада помочь";
 		AnswerData data = translator.getAnswerData(new InputData(new Attitude(), "some text"));
 		data = translator.getAnswerData(new InputData(new Attitude(), "английский"));
 		data = translator.getAnswerData(new InputData(new Attitude(), "английский"));
-		assertEquals(answer, translator.getAnswerData(new InputData(new Attitude(), "Нет")).getAnswer());
+		String ukraineString = translator.getAnswerData(new InputData(new Attitude(), "Нет")).getAnswer();
+		assertEquals(answer, ukraineString);
 		
 		TranslateService translator1 = new TranslateService();
 		String answer1 = "На какой язык ты хочешь перевести: на русский или "

@@ -10,10 +10,4 @@ public class InputData {
 		currentAttitude = a;
 		textMessage = s;
 	}
-
-	//TODO А зачем тут inputLog?
-	public InputData(Attitude a, String s, ArrayList<String> inputLog) {
-		currentAttitude = a;
-		textMessage = s;
-	}
 }

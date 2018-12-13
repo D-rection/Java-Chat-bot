@@ -12,7 +12,7 @@ class SeriesTest {
 	void seriesTest() {
 		Attitude a = new Attitude();
 		Series series = new Series();
-		String answer = series.getAnswerData(new InputData(a, null, null)).getAnswer();
+		String answer = series.getAnswerData(new InputData(a, null)).getAnswer();
 		String[] arrAnswers = answer.split("\"");
 		assertTrue(Arrays.asList(new Series().series).contains(arrAnswers[1]));
 	}

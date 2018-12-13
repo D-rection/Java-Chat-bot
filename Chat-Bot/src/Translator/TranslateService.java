@@ -9,8 +9,6 @@ import bot.AnswerData;
 import bot.InputData;
 import bot.TopicConversation;
 
-//TODO Пожалуйста, расскажите в чем архитектурная или техническая сложность в делании этой задачи?
-//Вы предлагаете это удалить?
 public class TranslateService implements TopicConversation
 {
 	private String targetLanguage = null;
@@ -19,9 +17,9 @@ public class TranslateService implements TopicConversation
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("(?iu:переведи)"));
-			add(Pattern.compile("(?iu:можешь\\s.*перевести)"));
-			add(Pattern.compile("(?iu:переводчик)"));
+			add(Pattern.compile("переведи"));
+			add(Pattern.compile("можешь\\s.*перевести"));
+			add(Pattern.compile("переводчик"));
 		}
 	};
 	
