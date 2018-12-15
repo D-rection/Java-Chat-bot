@@ -1,9 +1,5 @@
-import java.util.Date;
-import java.util.HashMap;
 import java.util.concurrent.*;
-
-import Logger.Logger;
-import Logger.Record;
+import java.util.logging.*;
 
 public class ActivityChecker implements Runnable
 {
@@ -24,7 +20,7 @@ public class ActivityChecker implements Runnable
 		{
 			try 
 			{
-				Thread.currentThread().sleep(5000);
+				Thread.currentThread().sleep(250);
 				long timeControl = System.currentTimeMillis();
 				 for(Long id: activityRecords.keySet())
 				 { 
@@ -33,17 +29,15 @@ public class ActivityChecker implements Runnable
 					 difference = difference / (1000 * 60);
 					 if(difference > 5)
 					 {
-						 String type = "Sleep User Cleaner";
 						 String info = "Chat №" + id.toString() + " - remove"; 
-						 log.AddRecord(new Record(type, info));
+						 log.info(info);
 						 activityRecords.remove(id);
 					 }
 				 }
 			} catch (InterruptedException e) 
 			{
-				String type = "Sleep User Cleaner";
 				String info = e.getMessage(); 
-				log.AddRecord(new Record(type, info));
+				log.info(info);
 			}
 			
 		}

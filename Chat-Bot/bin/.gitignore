@@ -2,11 +2,11 @@
 /ActivityRecord.class
 /ChatBotMax.class
 /Logger/
+/TelegramService.class
 /Translator/
 /answers/
 /bot/
-/files/
 /numbers/
 /test/
 /towns/
-/TelegramService.class
+/files/
