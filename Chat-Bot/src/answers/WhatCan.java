@@ -1,14 +1,13 @@
 package answers;
 
-import bot.TopicConversation;
-
-import java.util.HashSet;
-import java.util.regex.Pattern;
-
 import bot.AnswerData;
 import bot.InputData;
 
-public class WhatCan implements TopicConversation {
+public class WhatCan extends PatternBasedConversation {
+	public WhatCan() {
+		super(triggers);
+	}
+
 	public AnswerData getAnswerData(InputData input) {
 		StringBuilder strb = new StringBuilder();
 		strb.append("Пока я мало чего умею, но скоро этот список расширится.");
@@ -20,16 +19,9 @@ public class WhatCan implements TopicConversation {
 		return new AnswerData(answer, false);
 	}
 	
-	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
-	{
+	private static final String[] triggers =
 		{
-			add(Pattern.compile("(?iu:что\\s.*можешь)")); 			 
-			add(Pattern.compile("(?iu:что\\s.*умеешь)")); 
-		}
-	};
-
-	@Override
-	public HashSet<Pattern> getTriggers() {
-		return (HashSet<Pattern>) triggers.clone();
-	}
+			"(?iu:что\\s.*можешь)",
+			"(?iu:что\\s.*умеешь)",
+		};
 }

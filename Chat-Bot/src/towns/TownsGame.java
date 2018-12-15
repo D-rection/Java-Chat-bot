@@ -1,14 +1,15 @@
 package towns;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.regex.Pattern;
-import bot.TopicConversation;
+import answers.PatternBasedConversation;
+import answers.RandomHelpers;
 import bot.AnswerData;
 import bot.InputData;
 
-public class TownsGame implements TopicConversation {
-	String[] angryAnswers = {"Я не хочу с тобой играть...", "Поиграй с кем-нибудь другим", "Ты обидел меня(" };
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class TownsGame extends PatternBasedConversation {
+	static final String[] angryAnswers = {"Я не хочу с тобой играть...", "Поиграй с кем-нибудь другим", "Ты обидел меня(" };
 	
 	private HashSet<String> patternToAnalysis = new HashSet<String>() 
 	{
@@ -19,25 +20,26 @@ public class TownsGame implements TopicConversation {
 		}
 	};
 	
-	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
-	{
+	private static final String[] triggers =
 		{
-			add(Pattern.compile("(?iu:города)")); 
-		}
-	};
+			"(?iu:города)"
+		};
 
 	private TownsData townsData = new TownsData();
 	private TownsMemory townsMemory = new TownsMemory();
 	private HashSet<Character> invalidCharacter = new HashSet<>(Arrays.asList('ъ','ь','ы'));
-	
+
+	public TownsGame() {
+		super(triggers);
+	}
+
 	public AnswerData getAnswerData(InputData input) 
 	{		
 		if (townsData.isEndOfGame())
 			return endOfGame(input);
 		if (townsData.isStart()) {
 			if (input.currentAttitude.isAngry()){
-				int random = 0 + (int) (Math.random() * angryAnswers.length);
-				return new AnswerData(angryAnswers[random], false);
+				return new AnswerData(RandomHelpers.pickRandom(angryAnswers), false);
 			}
 			reboot();
 			townsData.firstCityWas();
@@ -154,11 +156,5 @@ public class TownsGame implements TopicConversation {
 		}
 		return new AnswerData(
 				"К сожалению, я пока ещё не очень умный бот и не понимаю тебя. " + "Ты будешь ещё играть?", true);
-	}
-
-	@Override
-	public HashSet<Pattern> getTriggers() 
-	{
-		return (HashSet<Pattern>) triggers.clone();
 	}
 }

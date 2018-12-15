@@ -3,7 +3,7 @@ package bot;
 public class Attitude {
 	private Mood friendliness;
 	
-	public Mood getFriendliness() {
+	public synchronized Mood getFriendliness() {
 		return friendliness;
 	}
 
@@ -11,23 +11,23 @@ public class Attitude {
 		friendliness = Mood.Neutral;
 	}
 
-	public void increasedFriendliness() {	
+	public synchronized void increasedFriendliness() {
 		friendliness = friendliness.increasedFriendliness();
 	}
 
-	public void decreaseFriendliness() {
+	public synchronized void decreaseFriendliness() {
 		friendliness = friendliness.decreaseFriendliness();
 	}
 	
-	public boolean isAngry() {
+	public synchronized boolean isAngry() {
 		return friendliness.isAngry();
 	}
 	
-	public boolean isNeutral() {
+	public synchronized boolean isNeutral() {
 		return friendliness.isNeutral();
 	}
 	
-	public boolean isCheerful() {
+	public synchronized boolean isCheerful() {
 		return friendliness.isCheerful();
 	}
 

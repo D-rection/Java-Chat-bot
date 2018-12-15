@@ -1,27 +1,28 @@
 package Translator;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.regex.Pattern;
 
+import answers.PatternBasedConversation;
 import bot.AnswerData;
 import bot.InputData;
 import bot.TopicConversation;
 
-public class TranslateService implements TopicConversation
+public class TranslateService extends PatternBasedConversation
 {
 	private String targetLanguage = null;
 	private TranslateSteps currentStep = TranslateSteps.Start;
 	
-	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
-	{
+	private static final String[] triggers =
 		{
-			add(Pattern.compile("(?iu:переведи)")); 
-			add(Pattern.compile("(?iu:можешь\\s.*перевести)")); 
-			add(Pattern.compile("(?iu:переводчик)"));
-		}
-	};
+			"(?iu:переведи)",
+			"(?iu:можешь\\s.*перевести)",
+			"(?iu:переводчик)",
+		};
 	
 	private HashMap<String, String> languageMap = new HashMap<String, String>()
 	{
@@ -47,7 +48,11 @@ public class TranslateService implements TopicConversation
 			put("в другой раз", false);
 		}
 	};
-	
+
+	public TranslateService() {
+		super(triggers);
+	}
+
 	@Override
 	public AnswerData getAnswerData(InputData data) 
 	{
@@ -163,7 +168,7 @@ public class TranslateService implements TopicConversation
 	
 	private AnswerData exit(InputData input)
 	{
-		AnswerData result = null;
+		AnswerData result;
 		boolean continueTalk = getMeaningInput(input.textMessage);
 		if (continueTalk)
 			result = learnLanguage();
@@ -175,11 +180,4 @@ public class TranslateService implements TopicConversation
 		}
 		return result;
 	}
-
-	@Override
-	public HashSet<Pattern> getTriggers() 
-	{
-		return (HashSet<Pattern>) triggers.clone();
-	}
-
 }

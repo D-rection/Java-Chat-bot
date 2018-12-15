@@ -1,30 +1,15 @@
 package answers;
 
-import bot.TopicConversation;
+public class WhatTime extends BaseTopicTimeConversation {
+	private static final String[] triggers =
+			{
 
-import java.util.HashSet;
-import java.util.regex.Pattern;
+					"(?iu:который\\s.*час)",
+					"(?iu:сколько\\s.*время)"
+			};
 
-import bot.AnswerData;
-import bot.InputData;
-
-public class WhatTime extends BaseTopicConversation implements TopicConversation {
-	public AnswerData getAnswerData(InputData input) {
-		return super.getAnswerDataWithDate(input, "'Сейчас' kk:mm");
+	public WhatTime() {
+		super(triggers, "'Сейчас' kk:mm");
 	}
-	
-	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
-	{
-		{
 
-			add(Pattern.compile("(?iu:который\\s.*час)")); 
-			add(Pattern.compile("(?iu:сколько\\s.*время)")); 
-		}
-	};
-
-	@Override
-	public HashSet<Pattern> getTriggers() 
-	{
-		return (HashSet<Pattern>) triggers.clone();
-	}
 }

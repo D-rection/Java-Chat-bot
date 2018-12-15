@@ -27,8 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChatBot {
-	private Random random = new Random();
-	private Attitude attitude = new Attitude();
+	private volatile Attitude attitude = new Attitude();
 	private TopicConversation currentConversation = null;
 	private InputData input = new InputData(null, null);
 
@@ -60,16 +59,13 @@ public class ChatBot {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						if (attitude.isAngry()) {
-							attitude.increasedFriendliness();
-						} else if (attitude.isCheerful()) {
-							attitude.decreaseFriendliness();
-						} else {
-							attitude = new Attitude();
-						}
+				new Thread(() -> {
+					if (attitude.isAngry()) {
+						attitude.increasedFriendliness();
+					} else if (attitude.isCheerful()) {
+						attitude.decreaseFriendliness();
+					} else {
+						attitude = new Attitude();
 					}
 				}).start();
 			}
@@ -87,7 +83,7 @@ public class ChatBot {
 		}
 		String message = String.join(" ", msg.split("[ {,|.}?]+")); 
 		for (TopicConversation topic : topics) {
-			if (topic.isThisSuitableTrigger(message, topic.getTriggers())) {
+			if (topic.isThisSuitableTrigger(message)) {
 				AnswerData data = topic.getAnswerData(input);
 				if (!data.saveTheme())
 					currentConversation = null;

@@ -1,23 +1,8 @@
 package bot;
 
-import java.util.HashSet;
-import java.util.regex.Pattern;
-
 public interface TopicConversation {
-	AnswerData getAnswerData(InputData data);	
-	HashSet<Pattern> getTriggers();
-	
-	default boolean isThisSuitableTrigger(String message, HashSet<Pattern> triggers)
-	{
-		boolean result = false;
-		for (Pattern key: triggers)
-		{
-			if (key.matcher(message).find())
-			{
-				result = true;
-				break;
-			}
-		}
-		return result;
+	AnswerData getAnswerData(InputData data);
+	default boolean isThisSuitableTrigger(String message) {
+		return true;
 	}
 }

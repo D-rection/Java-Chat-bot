@@ -1,7 +1,5 @@
 package bot;
 
-import java.util.ArrayList;
-
 public class InputData {
 	public Attitude currentAttitude;
 	public String textMessage;
