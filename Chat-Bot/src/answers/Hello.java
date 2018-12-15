@@ -24,11 +24,7 @@ public class Hello extends BaseTopicConversation implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("хай"));
-			add(Pattern.compile("привет"));
-			add(Pattern.compile("здорово"));
-			add(Pattern.compile("здравствуй"));
-			add(Pattern.compile("здаровки"));
+			add(Pattern.compile("(?iu:хай|привет|здорово|здравствуй|здаровки)")); 
 		}
 	};
 

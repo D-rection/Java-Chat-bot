@@ -23,8 +23,8 @@ public class WhatCan implements TopicConversation {
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("что\\s.*можешь"));
-			add(Pattern.compile("что\\s.*умеешь"));
+			add(Pattern.compile("(?iu:что\\s.*можешь)")); 			 
+			add(Pattern.compile("(?iu:что\\s.*умеешь)")); 
 		}
 	};
 

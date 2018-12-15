@@ -22,11 +22,10 @@ public class Cartoon extends BaseTopicConversation implements TopicConversation 
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
 		{
-			add(Pattern.compile("мультфильм"));
-			add(Pattern.compile("мультик"));
-			add(Pattern.compile("какой\\s.*мультфильм"));
-			add(Pattern.compile("подскажи\\s.*мультфильм"));
-			add(Pattern.compile("посоветуй\\s.*мультфильм"));
+			add(Pattern.compile("(?iu:мультфильм|мультик|мульт)")); 	 
+			add(Pattern.compile("(?iu:какой\\s.*мультфильм)"));  
+			add(Pattern.compile("(?iu:подскажи\\s.*мультфильм)")); 
+			add(Pattern.compile("(?iu:посоветуй\\s.*мультфильм)"));
 		}
 	};
 	

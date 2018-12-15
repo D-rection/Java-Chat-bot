@@ -15,11 +15,9 @@ public class WhatDay extends BaseTopicConversation implements TopicConversation 
 	
 	private HashSet<Pattern> triggers = new HashSet<Pattern>() 
 	{
-		{
-			add(Pattern.compile("какой\\s.*день"));
-			add(Pattern.compile("какое\\s.*число"));
-			add(Pattern.compile("какой\\\\s.*день"));
-			add(Pattern.compile("какой\\\\s.*число"));
+		{			 
+			add(Pattern.compile("(?iu:какой\\s.*день)"));  
+			add(Pattern.compile("(?iu:какое\\s.*число)")); 
 		}
 	};
 
